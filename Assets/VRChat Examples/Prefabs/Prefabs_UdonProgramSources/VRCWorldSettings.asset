@@ -21,10 +21,14 @@ MonoBehaviour:
     \   impulse_0: %SystemSingle, null\r\n    instance_1: %VRCSDKBaseVRCPlayerApi,
     null\r\n    speed_0: %SystemSingle, null\r\n    instance_2: %VRCSDKBaseVRCPlayerApi,
     null\r\n    speed_1: %SystemSingle, null\r\n    instance_3: %VRCSDKBaseVRCPlayerApi,
-    null\r\n    speed_2: %SystemSingle, null\r\n    jumpImpulse: %SystemSingle, null\r\n
-    \   walkSpeed: %SystemSingle, null\r\n    runSpeed: %SystemSingle, null\r\n    strafeSpeed:
-    %SystemSingle, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n    .export _start\r\n
-    \   \r\n    _start:\r\n    \r\n        PUSH, Object_0\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    null\r\n    speed_2: %SystemSingle, null\r\n    instance_4: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    impulse_1: %SystemSingle, null\r\n    Single_0: %SystemSingle, null\r\n
+    \   Single_1: %SystemSingle, null\r\n    instance_5: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    onPlayerRespawnPlayer: %VRCSDKBaseVRCPlayerApi, null\r\n    jumpImpulse:
+    %SystemSingle, null\r\n    walkSpeed: %SystemSingle, null\r\n    runSpeed: %SystemSingle,
+    null\r\n    strafeSpeed: %SystemSingle, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n
+    \   .export _start\r\n    \r\n    _start:\r\n    \r\n        PUSH, Object_0\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
     \       PUSH, var_0\r\n        PUSH, Object_1\r\n        COPY\r\n        PUSH,
     Object_0\r\n        PUSH, Object_1\r\n        PUSH, Boolean_0\r\n        EXTERN,
     \"SystemObject.__op_Inequality__SystemObject_SystemObject__SystemBoolean\"\r\n
@@ -37,7 +41,14 @@ MonoBehaviour:
     instance_0\r\n        PUSH, runSpeed\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__SetRunSpeed__SystemSingle__SystemVoid\"\r\n
     \       PUSH, instance_0\r\n        PUSH, instance_3\r\n        COPY\r\n        PUSH,
     instance_0\r\n        PUSH, strafeSpeed\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__SetStrafeSpeed__SystemSingle__SystemVoid\"\r\n
-    \       JUMP, 0x00000108\r\n        JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+    \       JUMP, 0x00000108\r\n        JUMP, 0xFFFFFFFC\r\n    \r\n    .export _onPlayerRespawn\r\n
+    \   \r\n    _onPlayerRespawn:\r\n    \r\n        PUSH, onPlayerRespawnPlayer\r\n
+    \       PUSH, instance_5\r\n        COPY\r\n        PUSH, instance_5\r\n        PUSH,
+    Single_0\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__GetJumpImpulse__SystemSingle\"\r\n
+    \       PUSH, Single_0\r\n        PUSH, Single_1\r\n        PUSH, impulse_1\r\n
+    \       EXTERN, \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n
+    \       PUSH, instance_4\r\n        PUSH, impulse_1\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__SetJumpImpulse__SystemSingle__SystemVoid\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
   assemblyError: 
   graphData:
     name: 
@@ -45,20 +56,20 @@ MonoBehaviour:
     nodes:
     - fullName: Event_Start
       uid: df713bac-c105-4833-8cc2-f0418d6b2891
-      position: {x: -1040, y: -110}
+      position: {x: -1050, y: -100}
       nodeUIDs: []
       flowUIDs:
       - 0d601518-ff58-4807-822a-f81c4ef56ee7
       nodeValues: []
     - fullName: VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi
       uid: c7627294-2511-4dd9-a1a7-1031b9e0b569
-      position: {x: -330, y: 600}
+      position: {x: -350, y: 600}
       nodeUIDs: []
       flowUIDs: []
       nodeValues: []
     - fullName: VRCSDKBaseVRCPlayerApi.__SetJumpImpulse__SystemSingle__SystemVoid
       uid: 4c5852fe-e41d-4568-ba94-6d3d8cb89f5e
-      position: {x: 120, y: 70}
+      position: {x: 100, y: 50}
       nodeUIDs:
       - c7627294-2511-4dd9-a1a7-1031b9e0b569|0
       - 2d5a8ded-5798-4800-9df7-a67df67f86fb|0
@@ -71,7 +82,7 @@ MonoBehaviour:
         stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|2
     - fullName: Block
       uid: 36931a09-bd4f-48a6-84dc-a9f833ee7968
-      position: {x: -340, y: -50}
+      position: {x: -350, y: -50}
       nodeUIDs: []
       flowUIDs:
       - 4c5852fe-e41d-4568-ba94-6d3d8cb89f5e
@@ -81,7 +92,7 @@ MonoBehaviour:
       nodeValues: []
     - fullName: Get_Variable
       uid: 2d5a8ded-5798-4800-9df7-a67df67f86fb
-      position: {x: -320, y: 190}
+      position: {x: -300, y: 200}
       nodeUIDs:
       - 
       flowUIDs: []
@@ -111,7 +122,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: VRCSDKBaseVRCPlayerApi.__SetWalkSpeed__SystemSingle__SystemVoid
       uid: f5145ed2-ccf0-4c0d-8c95-776094331205
-      position: {x: 120, y: 210}
+      position: {x: 100, y: 200}
       nodeUIDs:
       - c7627294-2511-4dd9-a1a7-1031b9e0b569|0
       - a4266f52-2f68-4b80-a043-22a3c025fbfc|0
@@ -120,10 +131,10 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: 
       - unityObjectValue: {fileID: 0}
-        stringValue: 
+        stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|0
     - fullName: VRCSDKBaseVRCPlayerApi.__SetRunSpeed__SystemSingle__SystemVoid
       uid: b0310959-03d0-4375-911d-bd748f0c90c6
-      position: {x: 120, y: 350}
+      position: {x: 100, y: 350}
       nodeUIDs:
       - c7627294-2511-4dd9-a1a7-1031b9e0b569|0
       - de49b7f4-8593-4483-8c52-5b90d52395f3|0
@@ -132,7 +143,7 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: 
       - unityObjectValue: {fileID: 0}
-        stringValue: 
+        stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|0
     - fullName: Variable_SystemSingle
       uid: 55cd3818-2857-4e72-baa3-e7a2db299cbe
       position: {x: -1044, y: -336}
@@ -177,7 +188,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Get_Variable
       uid: a4266f52-2f68-4b80-a043-22a3c025fbfc
-      position: {x: -320, y: 280}
+      position: {x: -300, y: 300}
       nodeUIDs:
       - 
       flowUIDs: []
@@ -186,7 +197,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|55cd3818-2857-4e72-baa3-e7a2db299cbe
     - fullName: Get_Variable
       uid: de49b7f4-8593-4483-8c52-5b90d52395f3
-      position: {x: -320, y: 370}
+      position: {x: -300, y: 350}
       nodeUIDs:
       - 
       flowUIDs: []
@@ -195,7 +206,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ccd5d3f5-363e-41fb-8b61-605c48c833c0
     - fullName: Branch
       uid: 0d601518-ff58-4807-822a-f81c4ef56ee7
-      position: {x: -860, y: -50}
+      position: {x: -850, y: -50}
       nodeUIDs:
       - b83c8601-8d94-4d96-a7dc-a6c233e0a1e8|0
       flowUIDs:
@@ -203,10 +214,10 @@ MonoBehaviour:
       - 
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: 
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
     - fullName: Const_Null
       uid: f8cdfdb1-a47b-41e3-847a-34e4bd1db169
-      position: {x: -1235, y: 145}
+      position: {x: -1200, y: 150}
       nodeUIDs:
       - 
       flowUIDs: []
@@ -215,7 +226,7 @@ MonoBehaviour:
         stringValue: 
     - fullName: SystemObject.__op_Inequality__SystemObject_SystemObject__SystemBoolean
       uid: b83c8601-8d94-4d96-a7dc-a6c233e0a1e8
-      position: {x: -1095, y: 75}
+      position: {x: -1100, y: 100}
       nodeUIDs:
       - 3d00b06e-619b-42a6-8249-46f0b150fdd9|0
       - f8cdfdb1-a47b-41e3-847a-34e4bd1db169|0
@@ -227,7 +238,7 @@ MonoBehaviour:
         stringValue: 
     - fullName: VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi
       uid: 3d00b06e-619b-42a6-8249-46f0b150fdd9
-      position: {x: -1395, y: 55}
+      position: {x: -1400, y: 50}
       nodeUIDs: []
       flowUIDs: []
       nodeValues: []
@@ -254,7 +265,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Get_Variable
       uid: 4fc76277-e21a-4e7a-9a82-4e8636d67af3
-      position: {x: -320, y: 460}
+      position: {x: -300, y: 450}
       nodeUIDs:
       - 
       flowUIDs: []
@@ -263,7 +274,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|88d27349-733d-4418-86c1-8587fd24cb8b
     - fullName: VRCSDKBaseVRCPlayerApi.__SetStrafeSpeed__SystemSingle__SystemVoid
       uid: 9ca4ff2c-f643-4f2e-ba39-350fb65d5b39
-      position: {x: 120, y: 510}
+      position: {x: 100, y: 500}
       nodeUIDs:
       - c7627294-2511-4dd9-a1a7-1031b9e0b569|0
       - 4fc76277-e21a-4e7a-9a82-4e8636d67af3|0
@@ -273,6 +284,47 @@ MonoBehaviour:
         stringValue: 
       - unityObjectValue: {fileID: 0}
         stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|0
+    - fullName: Event_OnPlayerRespawn
+      uid: 8935605c-a7d2-471c-aad5-1adbd125b233
+      position: {x: -1050, y: 950}
+      nodeUIDs: []
+      flowUIDs:
+      - e5837ea1-156c-41ea-a17a-3297f74aa172
+      nodeValues: []
+    - fullName: VRCSDKBaseVRCPlayerApi.__SetJumpImpulse__SystemSingle__SystemVoid
+      uid: e5837ea1-156c-41ea-a17a-3297f74aa172
+      position: {x: -350, y: 950}
+      nodeUIDs:
+      - 
+      - 850d70d3-c413-4b71-a1cf-ee82fc42803f|0
+      flowUIDs:
+      - 
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|2
+    - fullName: VRCSDKBaseVRCPlayerApi.__GetJumpImpulse__SystemSingle
+      uid: a8944ebf-cd8c-4854-b62f-a8258865cebe
+      position: {x: -800, y: 1050}
+      nodeUIDs:
+      - 8935605c-a7d2-471c-aad5-1adbd125b233|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle
+      uid: 850d70d3-c413-4b71-a1cf-ee82fc42803f
+      position: {x: -550, y: 1050}
+      nodeUIDs:
+      - a8944ebf-cd8c-4854-b62f-a8258865cebe|0
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|0
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|1
     updateOrder: 0
   graphElementData:
   - type: 2
@@ -303,7 +355,7 @@ MonoBehaviour:
     uid: 4df28d22-f655-4ebb-951d-06f65a528c59
     jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":10.0,"y":20.0,"width":0.0,"height":0.0}}'
   viewTransform:
-    position: {x: 1002.55334, y: 218.3866}
-    scale: 0.65751624
+    position: {x: 1361.4058, y: -78.92035}
+    scale: 0.7561437
   version: 1.0.0
   showAssembly: 1
