@@ -4,7 +4,6 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.Experimental.UIElements.GraphView;
 #endif
 using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView

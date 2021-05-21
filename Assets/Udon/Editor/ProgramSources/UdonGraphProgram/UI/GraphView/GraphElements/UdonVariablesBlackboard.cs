@@ -54,6 +54,14 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         public void AddFromData(UdonNodeData nodeData)
         {
+            // don't add internal variables, which start with __
+            // Todo: handle all "__" variables instead, need to tell community first and let the word spread
+            string newVariableName = (string)nodeData.nodeValues[(int)UdonParameterProperty.ValueIndices.name].Deserialize();
+            if (newVariableName.StartsWithCached("__returnValue"))
+            {
+                return;
+            }
+            
             UdonNodeDefinition definition = UdonEditorManager.Instance.GetNodeDefinition(nodeData.fullName);
             if (definition != null)
             {
@@ -77,21 +85,18 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         {
             visible = value;
             _customData.visible = value;
-            SaveNewData();
+            SaveData();
         }
 
         public override void UpdatePresenterPosition()
         {
             _customData.layout = GetPosition();
-            SaveNewData();
+            SaveData();
         }
 
-        private void SaveNewData()
+        private void SaveData()
         {
-            if (!_graph.IsReloading)
-            {
-                _graph.SaveNewData();
-            }
+            _graph.SaveGraphElementData(this);
         }
 
         public UdonGraphElementData GetData()

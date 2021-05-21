@@ -1,9 +1,7 @@
 #if UNITY_2019_3_OR_NEWER
 using UnityEngine.UIElements;
-using UnityEditor.Experimental.GraphView;
 #else
 using UnityEngine.Experimental.UIElements;
-using UnityEditor.Experimental.UIElements.GraphView;
 #endif
 using System;
 using UnityEditor.SceneManagement;
@@ -30,21 +28,6 @@ namespace UnityEditor.Experimental.UIElements.GraphView
             {
                 element.SendEvent(e);
             }
-        }
-
-        public static void SaveNewData(this GraphElement element)
-        {
-            var evt = new Event()
-            {
-                type = EventType.ExecuteCommand,
-                commandName = UdonGraphCommands.SaveNewData
-            };
-            using (var e = ExecuteCommandEvent.GetPooled(evt))
-            {
-                element.SendEvent(e);
-            }
-
-            MarkDirty();
         }
 
         public static void Compile(this GraphElement element)

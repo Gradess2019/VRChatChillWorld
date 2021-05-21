@@ -9,7 +9,7 @@ namespace VRC.SDKBase.Validation
     {
         public static void RemoveIllegalComponents(GameObject target, HashSet<Type> whitelist, bool retry = true, bool onlySceneObjects = false, bool logStripping = true)
         {
-            IEnumerable<Component> foundComponents = FindIllegalComponents(target, whitelist);
+            List<Component> foundComponents = FindIllegalComponents(target, whitelist);
             foreach(Component component in foundComponents)
             {
                 if(component == null)
@@ -24,14 +24,14 @@ namespace VRC.SDKBase.Validation
 
                 if (logStripping)
                 {
-                    VRC.Core.Logger.LogWarning(string.Format("Removing {0} comp from {1}", component.GetType().Name, component.gameObject.name));
+                    Core.Logger.LogWarning($"Removing {component.GetType().Name} comp from {component.gameObject.name}");
                 }
 
                 RemoveComponent(component);
             }
         }
 
-        public static IEnumerable<Component> FindIllegalComponents(GameObject target, HashSet<Type> whitelist)
+        public static List<Component> FindIllegalComponents(GameObject target, HashSet<Type> whitelist)
         {
             List<Component> foundComponents = new List<Component>();
             Component[] allComponents = target.GetComponentsInChildren<Component>(true);
@@ -215,7 +215,9 @@ namespace VRC.SDKBase.Validation
         public static void RemoveComponent(Component comp)
         {
             if (comp == null)
+            {
                 return;
+            }
 
             RemoveDependencies(comp);
 

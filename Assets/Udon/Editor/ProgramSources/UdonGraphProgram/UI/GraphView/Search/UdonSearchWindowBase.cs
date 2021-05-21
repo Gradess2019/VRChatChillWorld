@@ -79,7 +79,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 s => UdonGraphExtensions.PrettyFullName(s)))
             {
                 string baseIdentifier = nodeDefinition.fullName;
-                string[] splitBaseIdentifier = baseIdentifier.Split(new[] {"__"}, StringSplitOptions.None);
+                string[] splitBaseIdentifier = baseIdentifier.Split(new[] { "__" }, StringSplitOptions.None);
                 if (splitBaseIdentifier.Length >= 2)
                 {
                     baseIdentifier = $"{splitBaseIdentifier[0]}__{splitBaseIdentifier[1]}";

@@ -21,7 +21,7 @@ namespace VRC.SDK3.Midi
         private TextField _deviceNameField;
 
         public const string DEVICE_NAME_STRING = "VRC.SDK3.Midi.Device";
-
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN) && !UNITY_ANDROID
         [MenuItem("VRChat SDK/Utilities/Midi")]
         private static void ShowWindow()
         {
@@ -52,7 +52,7 @@ namespace VRC.SDK3.Midi
             // Container for Device Name label and field
             VisualElement deviceNameContainer = new VisualElement() {style = {flexDirection = FlexDirection.Row}};
             _rootView.Add(deviceNameContainer);
-
+            
             // Label for Field
             deviceNameContainer.Add(new Label("Device Name"));
 
@@ -61,7 +61,7 @@ namespace VRC.SDK3.Midi
             {
                 isDelayed = true,
                 value = EditorPrefs.GetString(DEVICE_NAME_STRING),
-                style = {flexGrow = 1},
+                style = { flexGrow = 1 },
             };
 #if UNITY_2019_3_OR_NEWER
             _deviceNameField.RegisterValueChangedCallback(
@@ -93,6 +93,7 @@ namespace VRC.SDK3.Midi
                 evt => EditorPrefs.SetString(DEVICE_NAME_STRING, evt.newValue));
             deviceNameContainer.Add(deviceNamePopupField);
         }
+#endif
     }
 #endif
 }

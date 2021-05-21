@@ -12,7 +12,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
     public class QuaternionField : BaseField<Quaternion>
     {
         #if UNITY_2019_3_OR_NEWER
-        public QuaternionField(string label, VisualElement element) :base(label, element)
+        public QuaternionField() :base(null, null)
         #else
         public QuaternionField()
         #endif

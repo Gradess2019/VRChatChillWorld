@@ -1,45 +1,34 @@
 ﻿#if UNITY_2019_3_OR_NEWER
 using UnityEngine.UIElements;
-
 #else
 using UnityEngine.Experimental.UIElements;
 #endif
 
 namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
 {
+    public class CharField : BaseField<char>
+    {
 #if UNITY_2019_3_OR_NEWER
-    public class CharField : TextInputBaseField<char>
-    {
-        public CharField()
-            : base(1, char.MinValue, null)
+        public CharField():base(null,null)
 #else
-    public class CharField : TextInputFieldBase<char>
-    {
-        public CharField()
-            : base(1, char.MinValue)
+        public CharField():base()
 #endif
         {
-            this.AddToClassList("UdonValueField");
-        }
+            // Set up styling
+            AddToClassList("UdonValueField");
+            
+            // Create Char Editor and listen for changes
+            TextField field = new TextField();
+            field.maxLength = 1;
+#if UNITY_2019_3_OR_NEWER
+            field.RegisterValueChangedCallback(
+#else
+            field.OnValueChanged(
+#endif
+                e =>
+                    value = e.newValue.ToCharArray()[0]);
 
-        public override char value
-        {
-            get { return base.value; }
-            set
-            {
-                base.value = value;
-                this.text = value.ToString();
-            }
-        }
-
-        protected override void ExecuteDefaultAction(EventBase evt)
-        {
-            base.ExecuteDefaultAction(evt);
-
-            if (this.text.Length > 0)
-            {
-                this.value = this.text.ToCharArray()[0];
-            }
+            Add(field);
         }
     }
 }

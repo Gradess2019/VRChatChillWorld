@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,8 @@ namespace VRC.Udon
     [AddComponentMenu("")]
     public class UdonManager : MonoBehaviour, IUdonClientInterface
     {
+        public static event Action<IUdonProgram> OnUdonProgramLoaded;
+
         public UdonBehaviour currentlyExecuting;
 
         #region Singleton
@@ -349,6 +352,13 @@ namespace VRC.Udon
 
             foreach(UdonBehaviour udonBehaviour in udonBehaviours)
             {
+                // need to use this equals style, just checking if(udonBehaviour) does not return correctly
+                if (udonBehaviour == null)
+                {
+                    _inputUpdateUdonBehavioursRegistrationQueue.Enqueue((udonBehaviour, inputEvent, false));
+                    continue;
+                }
+
                 // Easier to check here than adding / removing from lookup
                 if(udonBehaviour.enabled)
                 {
@@ -370,7 +380,7 @@ namespace VRC.Udon
                 {
                     continue;
                 }
-
+                
                 // Needs to be added to lookup
                 if(newState)
                 {
@@ -451,6 +461,17 @@ namespace VRC.Udon
             }
 
             _sceneUdonBehaviourDirectories.Add(scene, sceneUdonBehaviourDirectory);
+            
+            // Initialize Event Queues - we don't want any cached UdonBehaviours or Events from previous scenes
+            _updateUdonBehaviours.Clear();
+            _lateUpdateUdonBehaviours.Clear();
+            _fixedUpdateUdonBehaviours.Clear();
+            _updateUdonBehavioursRegistrationQueue.Clear();
+            _lateUpdateUdonBehavioursRegistrationQueue.Clear();
+            _fixedUpdateUdonBehavioursRegistrationQueue.Clear();
+            _inputUdonBehaviours.Clear();
+            _inputUpdateUdonBehavioursRegistrationQueue.Clear();
+            _udonEventScheduler.ClearScheduledEvents();
 
             // Initialize all UdonBehaviours in the scene so their Public Variables are populated.
             foreach(HashSet<UdonBehaviour> udonBehaviourList in sceneUdonBehaviourDirectory.Values)
@@ -462,6 +483,12 @@ namespace VRC.Udon
                     udonBehaviour.InitializeUdonContent();
                 }
             }
+        }
+
+        [SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Global")]
+        public void ProcessUdonProgram(IUdonProgram udonProgram)
+        {
+            OnUdonProgramLoaded?.Invoke(udonProgram);
         }
 
         private void OnSceneUnloaded(Scene scene)
@@ -635,7 +662,6 @@ namespace VRC.Udon
         }
 
         #endregion
-
 
         #region Helper Classes
 

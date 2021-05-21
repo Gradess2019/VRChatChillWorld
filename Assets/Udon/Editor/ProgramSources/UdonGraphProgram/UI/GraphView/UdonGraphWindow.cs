@@ -1,7 +1,7 @@
 ﻿#if UNITY_2019_3_OR_NEWER
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-//using UnityEngine.UIElements.StyleEnums;
+using UnityEngine.UIElements.StyleEnums;
 #else
 using UnityEngine.Experimental.UIElements;
 using UnityEditor.Experimental.UIElements;
@@ -118,7 +118,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             _rootView.styleSheets.Add((StyleSheet) Resources.Load("UdonGraphStyle"));
 #else
             _rootView = this.GetRootVisualContainer();
-            _rootView.AddStyleSheetPath("UdonGraphStyle");
+            _rootView.AddStyleSheetPath("UdonGraphStyle2018");
 #endif
         }
 
@@ -192,7 +192,10 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             _toolbar.Add(_graphAssetName);
 
 #if UNITY_2019_3_OR_NEWER
-            _toolbar.Add(new ToolbarSpacer());
+            _toolbar.Add(new ToolbarSpacer()
+            {
+                flex = true,
+            });
 #else
             _toolbar.Add(new ToolbarFlexSpacer());
 #endif

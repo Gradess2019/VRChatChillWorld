@@ -50,7 +50,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             Add(mainContainer);
 
             var template = EditorGUIUtility.Load("Assets/Udon/Editor/Resources/UdonChangelog.uxml") as VisualTreeAsset;
+            #if UNITY_2019_3_OR_NEWER
+            var changelog = template.CloneTree((string) null);
+            #else
             var changelog = template.CloneTree(null);
+            #endif
             changelog.name = "changelog";
             mainContainer.Add(changelog);
 
@@ -98,7 +102,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
             var settingsTemplate =
                 EditorGUIUtility.Load("Assets/Udon/Editor/Resources/UdonSettings.uxml") as VisualTreeAsset;
+            #if UNITY_2019_3_OR_NEWER
+            var settings = settingsTemplate.CloneTree((string)null);
+            #else
             var settings = settingsTemplate.CloneTree(null);
+            #endif
             settings.name = "settings";
             column2.Add(settings);
 

@@ -11,11 +11,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
 {
     public class LayerMaskField : BaseField<LayerMask>
     {
-#if UNITY_2019_3_OR_NEWER
-        public LayerMaskField(string label, VisualElement element) : base(label, element)
-#else
-        public LayerMaskField(string label, VisualElement element) : base()
-#endif
+        #if UNITY_2019_3_OR_NEWER
+        public LayerMaskField() : base(null,null)
+        #else
+        public LayerMaskField()
+        #endif
         {
             // Set up styling
             AddToClassList("UdonValueField");

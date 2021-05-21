@@ -23,7 +23,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram
         public UdonGraphData graphData = new UdonGraphData();
 
         [SerializeField]
-        public UdonGraphElementData[] graphElementData;
+        public UdonGraphElementData[] graphElementData = new UdonGraphElementData[0];
 
         [SerializeField]
         public UdonGraph.ViewTransformData viewTransform = new UdonGraph.ViewTransformData();

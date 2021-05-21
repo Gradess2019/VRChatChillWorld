@@ -1,14 +1,16 @@
-﻿using System;
-using UnityEditor;
-using UnityEngine;
 #if UNITY_2019_3_OR_NEWER
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements.StyleSheets;
 #else
 using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.Experimental.UIElements.StyleSheets;
 #endif
+using System;
+using UnityEditor;
+using UnityEngine;
 
 namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 {
@@ -21,7 +23,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private UdonGraph _graph;
         public UdonGroup group;
 
-        // Called from Context menu
+        // Called from Context menu and Reload
         public static UdonComment Create(string value, Rect position, UdonGraph graph)
         {
             var comment = new UdonComment("", graph);
@@ -32,7 +34,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
             comment._customData.layout = position;
             comment._customData.title = value;
-
+            
             comment.UpdateFromData();
             graph.MarkSceneDirty();
 
@@ -42,10 +44,10 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         public static UdonComment Create(UdonGraphElementData elementData, UdonGraph graph)
         {
             var comment = new UdonComment(elementData.jsonData, graph);
-
+            
             comment.UpdateFromData();
             graph.MarkSceneDirty();
-
+            
             return comment;
         }
 
@@ -61,7 +63,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
             type = UdonGraphElementType.UdonComment;
 
-            if (!string.IsNullOrEmpty(jsonData))
+            if(!string.IsNullOrEmpty(jsonData))
             {
                 EditorJsonUtility.FromJsonOverwrite(jsonData, _customData);
             }
@@ -78,7 +80,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             _textField = new TextField(1000, true, false, '*');
             _textField.isDelayed = true;
             // Support IME
-            _textField.RegisterCallback<FocusInEvent>(evt => { Input.imeCompositionMode = IMECompositionMode.On; });
+            _textField.RegisterCallback<FocusInEvent>(evt =>{ Input.imeCompositionMode = IMECompositionMode.On;});
             _textField.RegisterCallback<FocusOutEvent>(evt =>
             {
                 SetText(_textField.text);
@@ -96,13 +98,18 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 SwitchToEditMode(false);
             });
         }
+        
+        private void SaveNewData()
+        {
+            _graph.SaveGraphElementData(this);
+        }
 
         private void UpdateFromData()
         {
-            if (_customData != null)
+            if(_customData != null)
             {
                 layer = _customData.layer;
-                if (string.IsNullOrEmpty(_customData.uid))
+                if(string.IsNullOrEmpty(_customData.uid))
                 {
                     _customData.uid = Guid.NewGuid().ToString();
                 }
@@ -127,7 +134,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             this.style.borderBottomWidth = 1;
 
             var resizer = this.Q(null, "resizer");
-            if (resizer != null)
+            if(resizer != null)
             {
                 resizer.style.paddingTop = 0;
                 resizer.style.paddingLeft = 0;
@@ -144,7 +151,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         {
             base.UpdatePresenterPosition();
             _customData.layout = GraphElementExtension.GetSnappedRect(GetPosition());
-            this.SaveNewData();
+            SaveNewData();
+            if (group != null)
+            {
+                group.SaveNewData();
+            }
         }
 
         private double lastClickTime;
@@ -153,7 +164,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private void OnLabelClick(MouseDownEvent evt)
         {
             var newTime = EditorApplication.timeSinceStartup;
-            if (newTime - lastClickTime < doubleClickSpeed)
+            if(newTime - lastClickTime < doubleClickSpeed)
             {
                 SwitchToEditMode(true);
             }
@@ -187,12 +198,10 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             value = value.TrimEnd();
             _customData.title = value;
             _label.text = value;
-            if (!_graph.IsReloading)
-            {
-                _graph.SaveNewData();
-            }
+            SaveNewData();
+            MarkDirtyRepaint();
         }
-
+        
         public UdonGraphElementData GetData()
         {
             return new UdonGraphElementData(UdonGraphElementType.UdonComment, uid,

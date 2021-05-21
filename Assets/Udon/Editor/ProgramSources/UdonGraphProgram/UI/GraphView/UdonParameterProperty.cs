@@ -15,18 +15,18 @@ using VRC.Udon.Serialization;
 namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 {
     public class UdonParameterProperty : VisualElement
-    {
-        protected UdonGraph graph;
-        protected UdonNodeData nodeData;
-        protected UdonNodeDefinition definition;
+	{
+		protected UdonGraph graph;
+		protected UdonNodeData nodeData;
+		protected UdonNodeDefinition definition;
 
         //public ExposedParameter parameter { get; private set; }
 
-        public Toggle isPublic { get; private set; }
-        public Toggle isSynced { get; private set; }
-        public VisualElement defaultValueContainer { get; private set; }
-        public EditorUI.PopupField<string> syncField { get; private set; }
-        private VisualElement _inputField;
+		public Toggle isPublic { get; private set; }
+		public Toggle isSynced { get; private set; }
+		public VisualElement defaultValueContainer { get; private set; }
+		public EditorUI.PopupField<string> syncField { get; private set; }
+		private VisualElement _inputField;
 
         public enum ValueIndices
         {
@@ -55,17 +55,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             this.graph = graphView;
             this.definition = definition;
             this.nodeData = nodeData;
-
-            // Make sure the incoming nodeData has the right number of nodeValues (super old graphs didn't have sync info)
-            if (this.nodeData.nodeValues.Length != 5)
-            {
-                this.nodeData.nodeValues = GetDefaultNodeValues();
-                for (int i = 0; i < nodeData.nodeValues.Length; i++)
-                {
-                    this.nodeData.nodeValues[i] = nodeData.nodeValues[i];
-                }
-            }
-
+            
             // Public Toggle
             isPublic = new Toggle
             {

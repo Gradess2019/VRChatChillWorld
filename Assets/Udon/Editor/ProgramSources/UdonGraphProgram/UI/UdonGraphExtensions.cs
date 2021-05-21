@@ -139,6 +139,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
                 "Foreach",
                 "Get_Variable",
                 "Set_Variable",
+                "Set_ReturnValue",
                 "Event_Custom",
                 "Event_OnDataStorageAdded",
                 "Event_OnDataStorageChanged",

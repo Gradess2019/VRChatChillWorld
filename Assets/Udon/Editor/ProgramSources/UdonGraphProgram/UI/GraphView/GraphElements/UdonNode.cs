@@ -48,7 +48,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         private readonly Dictionary<UdonNodeDefinition, string> _cleanerOptionNameCache =
             new Dictionary<UdonNodeDefinition, string>();
-        
+
         
         public bool IsVariableNode => _variableNodeType != VariableNodeType.None;
 
@@ -100,7 +100,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         // Called when creating from scratch
         public static UdonNode CreateNode(UdonNodeDefinition definition, UdonGraph view, UdonNodeData nodeData = null)
         {
-            return new UdonNode(definition, view, nodeData);
+           return new UdonNode(definition, view, nodeData);
         }
 
         private bool skipSubtitle = false;
@@ -113,7 +113,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             definition = nodeDefinition;
             Undo.RecordObject(view.graphProgramAsset, "Add UdonNode");
             var registry = UdonGraphExtensions.GetRegistryForDefinition(nodeDefinition);
-            if (registry != null)
+            if(registry != null)
             {
                 this._registry = registry;
             }
@@ -129,7 +129,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             this.Q("title").Insert(0, titleContainer);
 
             titleContainer.Add(this.Q("title-label"));
-
+            
             subtitle = new Label("")
             {
                 name = "subtitle",
@@ -139,7 +139,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 || definition.fullName.EndsWith("et_Variable")
                 || definition.fullName.StartsWithCached("Const_")
             );
-
+            
             if (!skipSubtitle)
             {
                 titleContainer.Insert(0, subtitle);
@@ -193,6 +193,24 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             }
 
             LayoutPorts();
+
+            if (nodeDefinition.fullName == "Set_ReturnValue")
+            {
+                string returnVariable = UdonBehaviour.ReturnVariableName;
+                string uuid = null;
+
+                if (!_graphView.GetVariableNames.Contains(returnVariable))
+                    uuid = _graphView.AddNewVariable("Variable_SystemObject", returnVariable, false);
+                else 
+                    uuid = _graphView.GetVariableNodes.FirstOrDefault(n => (string)n.nodeValues[1].Deserialize() == returnVariable)?.uid;
+
+                if (!string.IsNullOrWhiteSpace(uuid))
+                    SetNewValue(uuid, 0);
+                else
+                    Debug.LogError("Could not find return value name!");
+            }
+
+            view.MarkSceneDirty();
             
             RefreshTitle();
         }
@@ -237,21 +255,27 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             {
                 displayTitle = "UdonBehaviour";
             }
-            else if (displayTitle == "==" || displayTitle == "!=" || displayTitle == "+")
+            else if(displayTitle == "==" || displayTitle == "!=" || displayTitle == "+")
             {
                 displayTitle = $"{definition.type.Name} {displayTitle}";
             }
 
-            if (displayTitle.StartsWith("Op "))
+            if (displayTitle.StartsWith("Op ")) 
                 displayTitle = displayTitle.Replace("Op ", "");
-
-            title = displayTitle;
             
+            title = displayTitle;
+
             AddToClassList(title.Replace(" ", "").ToLowerFirstChar());
+
+            if (definition == null)
+            {
+                Debug.LogWarning($"Definition for {this.name} is null");
+                return;
+            }
             
             string className = definition.name.Split(' ').FirstOrDefault().Split('_').FirstOrDefault();
             AddToClassList(className);
-            
+
             if (!skipSubtitle)
             {
                 if (definition.fullName.StartsWith("Event_"))
@@ -284,7 +308,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                         //TODO: handle class names not found
                         //Debug.Log($"Couldn't find classname for {nodeDefinition.fullName}");
                     }
-                }
+                }   
             }
         }
 
@@ -317,6 +341,15 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             base.SetPosition(newPos);
             data.position = newPos.position;
         }
+        
+        public override void UpdatePresenterPosition()
+        {
+            base.UpdatePresenterPosition();
+            if (group != null)
+            {
+                group.SaveNewData();
+            }
+        }
 
         public void RefreshOverloadPopup()
         {
@@ -347,7 +380,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                     {
                         optionName = nodeDefinition.fullName;
                         // don't add overload types that take pointers, not supported
-                        string[] splitOptionName = optionName.Split(new[] {"__"}, StringSplitOptions.None);
+                        string[] splitOptionName = optionName.Split(new[] { "__" }, StringSplitOptions.None);
                         if (splitOptionName.Length >= 3)
                         {
                             optionName = $"({splitOptionName[2].Replace("_", ", ")})";
@@ -381,10 +414,10 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 _popup.OnValueChanged(
 #endif
                     (e) =>
-                    {
-                        // TODO - store data in the dropdown and use formatListItemCallback?
+                {
+                    // TODO - store data in the dropdown and use formatListItemCallback?
                         SetNewFullName(overloadDefinitions.ElementAt(_popup.index).fullName);
-                    });
+                });
                 inputContainer.Add(_popup);
             }
         }
@@ -401,7 +434,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private List<UdonNodeDefinition> CacheOverloads()
         {
             string baseIdentifier = name;
-            string[] splitBaseIdentifier = baseIdentifier.Split(new[] {"__"}, StringSplitOptions.None);
+            string[] splitBaseIdentifier = baseIdentifier.Split(new[] { "__" }, StringSplitOptions.None);
             if (splitBaseIdentifier.Length >= 2)
             {
                 baseIdentifier = $"{splitBaseIdentifier[0]}__{splitBaseIdentifier[1]}__";
@@ -461,16 +494,17 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 UdonNode connectedNode = _graphView.GetNodeByGuid(nodeUID) as UdonNode;
                 if (connectedNode == null)
                 {
-                    Debug.Log($"Couldn't find node with GUID {nodeUID}");
+                    Debug.Log($"Couldn't find node with GUID {nodeUID}, clearing data");
+                    data.flowUIDs[i] = "";
                     continue;
                 }
-
+                
                 // Trying to move a Block's flow that was left at the end to the beginning
                 if (portsFlowOut != null && i >= portsFlowOut.Count)
                 {
                     Debug.LogWarning(
                         $"Trying to restore flow to {connectedNode.name} from a non-existent port, skipping");
-
+                    
                     for (int j = 0; j < data.flowUIDs.Length; j++)
                     {
                         bool didRestoreFlow = false;
@@ -486,7 +520,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                             RestoreFlows();
                         }
                     }
-
+                    
                     continue;
                 }
 
@@ -515,7 +549,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
                 UdonPort destPort = null;
                 // Edge case, but its possible that this is null in broken graphs
-                if (connectedNode.portsFlowIn != null)
+                if(connectedNode.portsFlowIn != null)
                 {
                     destPort = connectedNode.portsFlowIn.FirstOrDefault();
                     if (destPort == null)
@@ -612,6 +646,9 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         // Legacy, haven't gone through yet
         void ValidateNodeData()
         {
+            // set data to this graph
+            data.SetGraph(_graphView.graphData);
+            
             for (int i = 0; i < data.nodeValues.Length; i++)
             {
                 if (definition.Inputs.Count <= i)
@@ -626,8 +663,8 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 {
                     if (expectedType == null || Nullable.GetUnderlyingType(expectedType) != null)
                     {
-                        continue;
-                    }
+                    continue;
+                }
                     else
                     {
                         data.nodeValues[i] = SerializableObjectContainer.Serialize(default, expectedType);
@@ -641,17 +678,17 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                     if (expectedType == null || Nullable.GetUnderlyingType(expectedType) != null)
                     {
                         // type is nullable, leave it alone
-                        continue;
-                    }
+                    continue;
+                }
                     else
-                    {
+                {
                         // not a nullable type - set a default
                         data.nodeValues[i] = SerializableObjectContainer.Serialize(default, expectedType);
-                    }
                 }
+            }
 
                 if (!expectedType.IsInstanceOfType(value))
-                {
+            {
                     data.nodeValues[i] = SerializableObjectContainer.Serialize(null, expectedType);
                 }
             }
@@ -703,9 +740,9 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
                 SetupInPorts();
             }
-
-            SetupOutPorts();
             
+            SetupOutPorts();
+
             RefreshExpandedState();
             RefreshPorts();
         }
@@ -730,12 +767,15 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             // Legacy method of determining currently selected index
             // TODO: upgrade this logic path from the legacy method of determining Variable indices
             // Get Variable nodes only have one value, get it and deserialize
-            
+
             var value = data.nodeValues[0].Deserialize();
 
+            var options = _graphView.GetVariableNames.Where(t => !t.StartsWith("__")).ToList();
+
             // Get value of selected node in rather roundabout way
-            int currentIndex = _graphView.GetVariableNodes
-                .IndexOf(_graphView.GetVariableNodes.FirstOrDefault(v => v.uid == (string) value));
+            int originalIndex = _graphView.GetVariableNodes
+                .IndexOf(_graphView.GetVariableNodes.FirstOrDefault(v => v.uid == (string)value));
+            int currentIndex = _graphView.GetVariableNames.FindIndex(s => s == _graphView.GetVariableNames[originalIndex]);
 
             if (currentIndex < 0)
             {
@@ -748,7 +788,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             if (_variablePopupField == null)
             {
                 // First time creating, just add it
-                _variablePopupField = new EditorUI.PopupField<string>(_graphView.GetVariableNames, currentIndex);
+                _variablePopupField = new EditorUI.PopupField<string>(options, currentIndex);
                 inputContainer.Add(_variablePopupField);
             }
             else
@@ -756,7 +796,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 // Remaking it - remove the old one, at the new one at its previous location
                 int index = inputContainer.IndexOf(_variablePopupField);
                 _variablePopupField.RemoveFromHierarchy();
-                _variablePopupField = new EditorUI.PopupField<string>(_graphView.GetVariableNames, currentIndex);
+                _variablePopupField = new EditorUI.PopupField<string>(options, currentIndex);
                 inputContainer.Insert(index, _variablePopupField);
             }
 #if UNITY_2019_3_OR_NEWER
@@ -767,18 +807,20 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 (e) =>
                 {
                     // Ensure we've selected an existing variable
-                    if (_variablePopupField.index < _graphView.GetVariableNames.Count)
+                    if (_variablePopupField.index < options.Count)
                     {
+                        int trueIndex = _graphView.GetVariableNames.FindIndex(s => s == _variablePopupField.text);
+
                         // not currently using event value, which is variable name. Instead using legacy method of comparing index to graph variable nodes array index
-                        string newUid = _graphView.GetVariableNodes[_variablePopupField.index].uid;
+                        string newUid = _graphView.GetVariableNodes[trueIndex].uid;
                         // Get Variable nodes only have one entry, so index is 0 below
                         SetNewValue(newUid, 0);
-                        
+                            
                         this.Reload(); // Didn't want to do this, but can't get flows to restore otherwise Ideally, we call RefreshTitle(), LayoutPorts(), RestoreConnections(), RestoreFlows()
                     }
-                });
+            });
 
-            string startingUid = _graphView.GetVariableNodes[currentIndex].uid;
+            string startingUid = _graphView.GetVariableNodes[originalIndex].uid;
             SetNewValue(startingUid, 0);
         }
 
@@ -825,6 +867,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             {
                 startIndex = 1;
             }
+            // Skip first input for Set_ReturnValue since that's the special variable
+            if (name.CompareTo("Set_ReturnValue") == 0)
+            {
+                startIndex = 1;
+            }
 
             // Skip inputs for Null and This nodes
             if (name.Contains("Const_Null") || name.Contains("Const_This"))
@@ -847,7 +894,6 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                     label = "UdonBehaviour";
                 }
 
-
                 label = label.FriendlyNameify();
                 string typeName = UdonGraphExtensions.FriendlyTypeName(input.type);
 
@@ -861,7 +907,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 Type type = (definition.fullName.Contains("Set_Variable"))
                     ? type = GetTypeForDefinition(definition)
                     : UdonGraphExtensions.SlotTypeConverter(input.type, definition.fullName);
-
+                
                 // not 100% sure if I should use label or typeName here
                 UdonPort p = UdonPort.Create(label, Direction.Input, this, type, data, index) as UdonPort;
                 inputContainer.Add(p);
@@ -933,7 +979,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         {
             UdonPort p = (UdonPort) UdonPort.Create(label, d, this, null, data, index);
             p.AddToClassList("flow");
-            if (d == Direction.Input)
+            if(d == Direction.Input)
             {
                 inputContainer.Add(p);
                 portsFlowIn.Add(p);
@@ -957,13 +1003,13 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 foreach (var edge in port.connections)
                 {
                     // if this connection goes to the node that started this all, then it's recursion
-                    if (edge.input.node == fromSlot.node)
+                    if(edge.input.node == fromSlot.node)
                     {
                         return true;
                     }
 
                     // Need to run this recursively to check all ports
-                    if (HasRecursiveFlow(fromSlot, edge.input))
+                    if(HasRecursiveFlow(fromSlot, edge.input))
                     {
                         return true;
                     }
@@ -984,7 +1030,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 graphView.AddElement(edge);
 
                 // Reload block nodes after new connections
-                if (definition.fullName == "Block")
+                if(definition.fullName == "Block")
                 {
                     RestoreFlows();
                 }

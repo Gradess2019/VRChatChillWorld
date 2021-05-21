@@ -106,7 +106,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             }
             else if(entry.userData is VariableInfo data)
             {
-                UdonNode node = _graphView.MakeVariableNode(data.uid, position, data.isGetter);
+                UdonNode node = _graphView.MakeVariableNode(data.uid, position, data.isGetter ? GraphView.UdonGraph.VariableNodeType.Getter : GraphView.UdonGraph.VariableNodeType.Setter );
                 _graphView.AddElement(node);
                 _graphView.ConnectNodeTo(node, startingPort, direction, typeToSearch);
                 _graphView.RefreshVariables(true);
