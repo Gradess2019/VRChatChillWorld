@@ -85,6 +85,8 @@ MonoBehaviour:
   - {fileID: 4284315435945247609}
   - {fileID: 5778154598561977517}
   - {fileID: 6286120661716731775}
+  StartPositions: []
+  StartRotations: []
 --- !u!114 &1783907877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +202,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -307,7 +309,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -414,7 +416,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -521,7 +523,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -628,7 +630,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -735,7 +737,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -842,7 +844,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -949,7 +951,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1056,7 +1058,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1163,7 +1165,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1270,7 +1272,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1377,7 +1379,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1484,7 +1486,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1591,7 +1593,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1698,7 +1700,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1805,7 +1807,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -1912,7 +1914,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -2019,7 +2021,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -2126,7 +2128,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
@@ -2233,7 +2235,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedProgramAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cadf61a1155203148941091a13f019d3,
+      objectReference: {fileID: 11400000, guid: b180a6f3022068f4b9e4ed7e3dfb116e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b727f381f1494c89bee9987a71733, type: 3}
