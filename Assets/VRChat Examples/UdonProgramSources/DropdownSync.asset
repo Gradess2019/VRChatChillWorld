@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: DropdownSync
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 3fffd44ea20612a40b70c557487d328e,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: d033d12fd156d8849a12acd58eb4e3dc,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export uiDropdown\r\n    .sync dropdownValue,
     none\r\n    \r\n    instance_0: %UnityEngineUIDropdown, null\r\n    value_0: %SystemInt32,
@@ -29,7 +29,6 @@ MonoBehaviour:
     \       PUSH, player_0\r\n        PUSH, obj_0\r\n        EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
     \       PUSH, uiDropdown\r\n        PUSH, instance_1\r\n        COPY\r\n        PUSH,
     instance_1\r\n        PUSH, dropdownValue\r\n        EXTERN, \"UnityEngineUIDropdown.__get_value__SystemInt32\"\r\n
-    \       PUSH, dropdownValue\r\n        PUSH, dropdownValue\r\n        COPY\r\n
     \       PUSH, instance_2\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__RequestSerialization__SystemVoid\"\r\n
     \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export _onOwnershipRequest\r\n    \r\n
     \   _onOwnershipRequest:\r\n    \r\n        PUSH, Boolean_0\r\n        PUSH, __returnValue\r\n
