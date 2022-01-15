@@ -27,7 +27,6 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         private HashSet<string> _hiddenRegistries = new HashSet<string>()
         {
-            "Utilities",
         };
 
         public void Initialize(UdonGraphWindow editorWindow, UdonGraph graphView, UdonSearchManager manager)
@@ -40,7 +39,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         override public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
-            if (_registryCache != null && _registryCache.Count > 0) return _registryCache;
+            if (!skipCache && (_registryCache != null && _registryCache.Count > 0)) return _registryCache;
 
             _registryCache = new List<SearchTreeEntry>();
 

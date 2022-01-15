@@ -23,6 +23,15 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         internal UdonGraph _graphView;
         private List<SearchTreeEntry> _exampleLookup;
         internal UdonGraphWindow _editorWindow;
+        protected bool skipCache = false;
+
+        private readonly HashSet<string> nodesToSkip = new HashSet<string>()
+        {
+            "Get_Variable",
+            "Set_Variable",
+            "Comment",
+            "Event_OnVariableChange",
+        };
 
         public virtual void Initialize(UdonGraphWindow editorWindow, UdonGraph graphView)
         {
@@ -34,7 +43,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         public virtual List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
-            if (_exampleLookup != null && _exampleLookup.Count > 0) return _exampleLookup;
+            if (!skipCache && ( _exampleLookup != null && _exampleLookup.Count > 0)) return _exampleLookup;
 
             _exampleLookup = new List<SearchTreeEntry>();
 
@@ -72,7 +81,6 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             Texture2D iconOther = new Texture2D(1, 1);
             iconOther.SetPixel(0,0, new Color(0,0,0,0));
             iconOther.Apply();
-            
             Dictionary<string, UdonNodeDefinition> baseNodeDefinition = new Dictionary<string, UdonNodeDefinition>();
 
             foreach (UdonNodeDefinition nodeDefinition in definitions.OrderBy(
@@ -108,9 +116,8 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                     nodeName = nodeName.Substring(lastDotIndex + 1);
                 }
                 
-                // don't add Variable or Comment nodes
-                if (nodeName.StartsWithCached("Variable") || nodeName.StartsWithCached("Get Var") ||
-                    nodeName.StartsWithCached("Set Var") || nodeName.StartsWithCached("Comment"))
+                // Skip some nodes that should be added in other ways (variables and comments)
+                if (nodeName.StartsWithCached("Variable") || nodesToSkip.Contains(nodeDefinitionsEntry.Key))
                 {
                     continue;
                 }
@@ -119,6 +126,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 {
                     nodeName = $"{nodeDefinitionsEntry.Value.type.Namespace}.{nodeName}";
                 }
+
                 if (nodeNamesGetComponentType.Contains(nodeName))
                 {
                     nodesOfGetComponentType.Add(new SearchTreeEntry(new GUIContent(nodeName, iconGetComponents)) { level = level+1, userData = nodeDefinitionsEntry.Value });

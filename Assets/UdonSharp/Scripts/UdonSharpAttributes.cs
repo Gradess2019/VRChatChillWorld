@@ -52,6 +52,10 @@ namespace UdonSharp
         /// </summary>
         Any,
         /// <summary>
+        /// Enforces no synced variables on the behaviour and hides the selection dropdown in the UI for the sync mode. Nothing is synced and SendCustomNetworkEvent will not work on the behaviour
+        /// </summary>
+        None,
+        /// <summary>
         /// Enforces no synced variables on the behaviour and hides the selection dropdown in the UI for the sync mode, SendCustomNetworkEvent() will still work on this behaviour
         /// </summary>
         NoVariableSync,
@@ -88,6 +92,24 @@ namespace UdonSharp
     {
         public RecursiveMethodAttribute()
         { }
+    }
+
+    /// <summary>
+    /// Calls the target property's setter when the marked field is modified by network sync or SetProgramVariable().
+    /// Fields marked with this will instead have the target property's setter called. The setter is expected to set the field if you want the field to change.
+    /// </summary>
+    [PublicAPI]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class FieldChangeCallbackAttribute : Attribute
+    {
+        public string CallbackPropertyName { get; private set; }
+
+        private FieldChangeCallbackAttribute() { }
+
+        public FieldChangeCallbackAttribute(string targetPropertyName)
+        {
+            CallbackPropertyName = targetPropertyName;
+        }
     }
 }
 

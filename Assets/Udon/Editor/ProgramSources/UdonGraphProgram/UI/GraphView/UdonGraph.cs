@@ -11,6 +11,7 @@ using MenuAction = UnityEngine.Experimental.UIElements.DropdownMenu.MenuAction;
 #endif
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -35,7 +36,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         // copied over from Legacy.UdonGraph,
         public UdonGraphProgramAsset graphProgramAsset;
-        public UdonBehaviour _udonBehaviour;
+        public UdonBehaviour udonBehaviour;
 
         public UdonGraphData graphData
         {
@@ -48,8 +49,8 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         }
 
         // Tracking variables
-        private List<string> _variablePopupOptions = new List<string>();
         private List<UdonNodeData> _variableNodes = new List<UdonNodeData>();
+        private ImmutableList<string> _variableNames;
 
         private Vector2 lastMousePosition;
         private VisualElement mouseTipContainer;
@@ -67,9 +68,9 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         // Enable stuff from NodeGraphProcessor
         private UdonGraphWindow _window;
 
-        public List<string> GetVariableNames
+        public ImmutableList<string> GetVariableNames
         {
-            get => _variablePopupOptions;
+            get => _variableNames;
             private set { }
         }
 
@@ -164,7 +165,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             graphProgramAsset = asset;
             if (udonBehaviour != null)
             {
-                _udonBehaviour = udonBehaviour;
+                this.udonBehaviour = udonBehaviour;
             }
             
             graphData = new UdonGraphData(graphProgramAsset.GetGraphData());
@@ -179,8 +180,14 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private void DelayedRestoreViewFromData()
         {
             EditorApplication.update -= DelayedRestoreViewFromData;
+            //Todo: restore from saved data instead of FrameAll
+#if UNITY_2019_3_OR_NEWER
+             FrameAll();
+#else
             UpdateViewTransform(graphProgramAsset.viewTransform.position,
-                Vector3.one * graphProgramAsset.viewTransform.scale);
+                 Vector3.one * graphProgramAsset.viewTransform.scale);
+             contentViewContainer.MarkDirtyRepaint();
+#endif
         }
 
         public UdonNode AddNodeFromSearch(UdonNodeDefinition definition, Vector2 position)
@@ -347,20 +354,21 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         {
             if (mouseTipContainer.visible)
             {
-                var layout = mouseTipContainer.layout;
-                layout.position = position + mouseTipOffset;
+                var newLayout = mouseTipContainer.layout;
+                newLayout.position = position + mouseTipOffset;
 #if UNITY_2019_3_OR_NEWER
-                mouseTipContainer.layout.Set(layout.x, layout.y, layout.width, layout.height);
+                mouseTipContainer.transform.position = newLayout.position;
 #else
-                mouseTipContainer.layout = layout;
+                mouseTipContainer.layout = newLayout;
 #endif
             }
         }
 
-        public bool IsDuplicateEventNode(string fullName)
+        public bool IsDuplicateEventNode(string fullName, string uid = "")
         {
             if (fullName.StartsWith("Event_") &&
-                (fullName != "Event_Custom"))
+                (fullName != "Event_Custom")
+            )
             {
                 if (this.Query(fullName).ToList().Count > 0)
                 {
@@ -368,6 +376,17 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                             $"Can't create more than one {fullName} node, try managing your flow with a Block node instead!");
                     return true;
                 }
+            }
+            else if(fullName.StartsWith(Common.VariableChangedEvent.EVENT_PREFIX))
+            {
+                bool isDuplicate = graphData.EventNodes.Any(d =>
+                    d.nodeValues.Length > 0 && d.nodeValues[0].Deserialize().ToString() == uid);
+                if (isDuplicate)
+                {
+                    Debug.LogWarning(
+                        $"Can't create more than one Change Event for {GetVariableName(uid)}, try managing your flow with a Block node instead!");
+                }
+                return isDuplicate;
             }
 
             return false;
@@ -645,10 +664,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private bool _waitingToReload;
         public void DoDelayedReload()
         {
-            if (!_waitingToReload)
+            if (!_waitingToReload && !_reloading)
             {
-            EditorApplication.update += DelayedReload;
-        }
+                _waitingToReload = true;
+                EditorApplication.update += DelayedReload;
+            }
         }
         
         void DelayedReload()
@@ -752,6 +772,8 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         public void Reload()
         {
+            if (_reloading) return;
+            
             _reloading = true;
 
 #if UNITY_2019_3_OR_NEWER
@@ -914,8 +936,9 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 .Where(n => n.nodeValues.Length > 1 && n.nodeValues[1] != null)
                 .OrderBy(n => ((string)n.nodeValues[1].Deserialize()).StartsWith("__"))
                 .ToList();
-            _variablePopupOptions =
-                _variableNodes.Select(s => (string)s.nodeValues[1].Deserialize()).ToList();
+            _variableNames = ImmutableList.Create(
+                _variableNodes.Select(s => (string) s.nodeValues[1].Deserialize()).ToArray()
+            );
 
             // Refresh variable options in popup
             nodes.ForEach(node =>
@@ -929,6 +952,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             // We usually want to compile after a Refresh
             if(recompile)
                 Compile();
+            DoDelayedReload();
         }
 
         // Returns UID of newly created variable
@@ -1022,25 +1046,13 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             UdonEditorManager.Instance.QueueAndRefreshProgram(graphProgramAsset);
         }
 
-        // Copied from source code, this is what happens when you press 'a' on the keyboard
-        public void Recenter()
-        {
-            Rect rectToFit;
-            Vector3 frameTranslation = Vector3.zero;
-            Vector3 frameScaling = Vector3.one;
-
-            rectToFit = CalculateRectToFitAll(contentViewContainer);
-            CalculateFrameTransform(rectToFit, layout, 30, out frameTranslation, out frameScaling);
-
-            Matrix4x4.TRS(frameTranslation, Quaternion.identity, frameScaling);
-
-            UpdateViewTransform(frameTranslation, frameScaling);
-
-            contentViewContainer.MarkDirtyRepaint();
-        }
-
         private bool ShouldUpdateAsset => !IsReloading && graphProgramAsset != null;
 
+        private readonly HashSet<UdonGraphElementType> singleElementTypes = new HashSet<UdonGraphElementType>()
+        {
+            UdonGraphElementType.Minimap, UdonGraphElementType.VariablesWindow
+        };
+        
         public void SaveGraphElementData(IUdonGraphElementDataProvider provider)
         {
             if (ShouldUpdateAsset)
@@ -1051,7 +1063,17 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                     graphProgramAsset.graphElementData = new UdonGraphElementData[0];
                 }
                 
-                int index = Array.FindIndex(graphProgramAsset.graphElementData, e => e.uid == newData.uid);
+                int index = -1;
+                // Some elements like minimap and variables window should only ever have one entry, so find by type
+                if (singleElementTypes.Contains(newData.type))
+                {
+                    index = Array.FindIndex(graphProgramAsset.graphElementData, e => e.type == newData.type);
+                }
+                // other elements can have multiples, so find by uid
+                else
+                {
+                    index = Array.FindIndex(graphProgramAsset.graphElementData, e => e.uid == newData.uid);
+                }
                 if (index > -1)
                 {
                     // Update
@@ -1096,10 +1118,10 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         private void OnDragEnter(DragEnterEvent e)
         {
-            OnDragEnter(e.mousePosition, e.ctrlKey);
+            OnDragEnter(e.mousePosition, e.ctrlKey, e.altKey);
         }
 
-        private void OnDragEnter(Vector2 mousePosition, bool ctrlKey)
+        private void OnDragEnter(Vector2 mousePosition, bool ctrlKey, bool altKey)
         {
             MoveMouseTip(mousePosition);
 
@@ -1112,10 +1134,15 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 if (dragData.OfType<UdonParameterField>().Any())
                 {
                     _dragging = true;
-                    SetMouseTip(ctrlKey ? 
-                        "Set Variable" : 
-                        "Get Variable\n+Ctrl: Set Variable"
-                    );
+                    string tip = "Get Variable\n+Ctrl: Set Variable\n+Alt: On Var Change";
+                    if (ctrlKey)
+                    {
+                        tip = "Set Variable";
+                    } else if (altKey)
+                    {
+                        tip = "On Variable Changed";
+                    }
+                    SetMouseTip(tip);
                 }
             }
 
@@ -1152,7 +1179,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             }
             else
             {
-                OnDragEnter(e.mousePosition, e.ctrlKey);
+                OnDragEnter(e.mousePosition, e.ctrlKey, e.altKey);
             }
         }
 
@@ -1169,11 +1196,16 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 if (parameters.Any())
                 {
                     RefreshVariables(false);
+                    VariableNodeType nodeType = VariableNodeType.Getter;
+                    if (e.ctrlKey) nodeType = VariableNodeType.Setter;
+                    else if (e.altKey) nodeType = VariableNodeType.Change;
                     foreach (var parameter in parameters)
                     {
-                        // Make Setter if ctrl is held, otherwise make Getter
-                        UdonNode udonNode = MakeVariableNode(parameter.Data.uid, graphMousePosition, !e.ctrlKey ? UdonGraph.VariableNodeType.Getter : UdonGraph.VariableNodeType.Setter);
-                        AddElement(udonNode);
+                        UdonNode udonNode = MakeVariableNode(parameter.Data.uid, graphMousePosition, nodeType);
+                        if (udonNode != null)
+                        {
+                            AddElement(udonNode);
+                        }
                     }
                     RefreshVariables(true);
                 }
@@ -1209,7 +1241,22 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         {
             Getter,
             Setter,
-            Return
+            Return,
+            Change,
+        }
+
+        public string GetVariableName(string uid)
+        {
+            var targetNode = GetVariableNodes.Where(n => n.uid == uid).First();
+            try
+            {
+                return targetNode.nodeValues[1].Deserialize() as string;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Couldn't find variable name for {uid}: {e.Message}");
+                return "";
+            }
         }
 
         public UdonNode MakeVariableNode(string selectedUid, Vector2 graphMousePosition, VariableNodeType nodeType)
@@ -1226,7 +1273,24 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 case VariableNodeType.Return:
                     definitionName = "Set_ReturnValue";
                     break;
+                case VariableNodeType.Change:
+                    definitionName = "Event_OnVariableChange";
+                    break;
             }
+
+            if (nodeType == VariableNodeType.Change)
+            {
+                string variableName = GetVariableName(selectedUid);
+                if (!string.IsNullOrWhiteSpace(variableName))
+                {
+                    string eventName = UdonGraphExtensions.GetVariableChangeEventName(variableName);
+                    if (IsDuplicateEventNode(eventName, selectedUid))
+                    {
+                        return null;
+                    }
+                }
+            }
+
             var definition = UdonEditorManager.Instance.GetNodeDefinition(definitionName);
             var nodeData = this.graphData.AddNode(definition.fullName);
             nodeData.nodeValues = new SerializableObjectContainer[2];
@@ -1276,7 +1340,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 if (!success) return;
 
                 //TODO: get actual variable name in case it was auto-changed on add
-                var result = _udonBehaviour.publicVariables.TrySetVariableValue(variableName, target);
+                var result = udonBehaviour.publicVariables.TrySetVariableValue(variableName, target);
                 if (result)
                 {
                     graphProgramAsset.OnAssemble -= listener;

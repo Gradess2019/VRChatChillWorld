@@ -34,7 +34,26 @@ namespace UdonSharp
 
             if (variableField != null)
             {
-                variableField.SetValue(this, value);
+                FieldChangeCallbackAttribute fieldChangeCallback = variableField.GetCustomAttribute<FieldChangeCallbackAttribute>();
+
+                if (fieldChangeCallback != null)
+                {
+                    PropertyInfo targetProperty = variableField.DeclaringType.GetProperty(fieldChangeCallback.CallbackPropertyName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+                    if (targetProperty == null)
+                        return;
+
+                    MethodInfo setMethod = targetProperty.GetSetMethod(true);
+
+                    if (setMethod == null)
+                        return;
+
+                    setMethod.Invoke(this, new object[] { value });
+                }
+                else
+                {
+                    variableField.SetValue(this, value);
+                }
             }
         }
 
@@ -51,7 +70,7 @@ namespace UdonSharp
             }
 #endif
 
-            MethodInfo eventmethod = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(e => e.Name == eventName && e.GetParameters().Length == 0).FirstOrDefault();
+            MethodInfo eventmethod = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(e => e.Name == eventName && e.GetParameters().Length == 0);
 
             if (eventmethod != null)
             {
@@ -59,7 +78,10 @@ namespace UdonSharp
             }
         }
 
-        public void SendCustomNetworkEvent(NetworkEventTarget target, string eventName) { }
+        public void SendCustomNetworkEvent(NetworkEventTarget target, string eventName)
+        {
+            SendCustomEvent(eventName);
+        }
 
         /// <summary>
         /// Executes target event after delaySeconds. If 0.0 delaySeconds is specified, will execute the following frame
@@ -76,6 +98,11 @@ namespace UdonSharp
         /// <param name="delayFrames"></param>
         /// <param name="eventTiming"></param>
         public void SendCustomEventDelayedFrames(string eventName, int delayFrames, VRC.Udon.Common.Enums.EventTiming eventTiming = VRC.Udon.Common.Enums.EventTiming.Update) { }
+
+        /// <summary>
+        /// Disables Interact events on this UdonBehaviour and disables the interact outline on the object this is attached to
+        /// </summary>
+        public bool DisableInteractive { get; set; }
 
         public static GameObject VRCInstantiate(GameObject original)
         {
@@ -120,6 +147,7 @@ namespace UdonSharp
         }
 
         // Method stubs for auto completion
+        public virtual void PostLateUpdate() { }
         public virtual void Interact() { }
         public virtual void OnDrop() { }
         public virtual void OnOwnershipTransferred(VRC.SDKBase.VRCPlayerApi player) { }

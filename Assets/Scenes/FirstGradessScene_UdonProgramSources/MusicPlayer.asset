@@ -14,109 +14,108 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedUdonProgramAsset: {fileID: 11400000, guid: 3327f9ec90f693b45bedde5a31badb00,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n    .export Playlist\r\n    .export Randomize\r\n
-    \   \r\n    instance_0: %UnityEngineGameObject, this\r\n    type_0: %SystemType,
-    null\r\n    GameObject_0: %UnityEngineGameObject, this\r\n    Type_0: %SystemType,
-    null\r\n    Boolean_0: %SystemBoolean, null\r\n    instance_1: %VRCUdonUdonBehaviour,
-    this\r\n    eventName_0: %SystemString, null\r\n    instance_2: %UnityEngineGameObject,
-    this\r\n    type_1: %SystemType, null\r\n    GameObject_1: %UnityEngineGameObject,
-    this\r\n    Type_1: %SystemType, null\r\n    instance_3: %UnityEngineAudioSource,
-    null\r\n    instance_4: %UnityEngineAudioClip, null\r\n    instance_5: %UnityEngineAudioClipArray,
-    null\r\n    Int32_0: %SystemInt32, null\r\n    Boolean_1: %SystemBoolean, null\r\n
-    \   instance_6: %VRCUdonUdonBehaviour, this\r\n    eventName_1: %SystemString,
-    null\r\n    instance_7: %UnityEngineGameObject, this\r\n    type_2: %SystemType,
-    null\r\n    GameObject_2: %UnityEngineGameObject, this\r\n    Type_2: %SystemType,
-    null\r\n    instance_8: %VRCUdonUdonBehaviour, this\r\n    eventName_2: %SystemString,
-    null\r\n    delaySeconds_0: %SystemSingle, null\r\n    eventTiming_0: %VRCUdonCommonEnumsEventTiming,
-    null\r\n    instance_9: %UnityEngineGameObject, this\r\n    type_3: %SystemType,
-    null\r\n    GameObject_3: %UnityEngineGameObject, this\r\n    Type_3: %SystemType,
-    null\r\n    Int32_1: %SystemInt32, null\r\n    Int32_2: %SystemInt32, null\r\n
-    \   Int32_3: %SystemInt32, null\r\n    Int32_4: %SystemInt32, null\r\n    instance_A:
-    %UnityEngineAudioClipArray, null\r\n    Boolean_2: %SystemBoolean, null\r\n    Boolean_3:
-    %SystemBoolean, null\r\n    instance_B: %UnityEngineAudioClip, null\r\n    instance_D:
-    %UnityEngineAudioSource, null\r\n    clip_0: %UnityEngineAudioClip, null\r\n    instance_C:
-    %UnityEngineAudioClipArray, null\r\n    Int32_5: %SystemInt32, null\r\n    instance_E:
-    %VRCUdonUdonBehaviour, this\r\n    eventName_3: %SystemString, null\r\n    delaySeconds_1:
-    %SystemSingle, null\r\n    eventTiming_1: %VRCUdonCommonEnumsEventTiming, null\r\n
-    \   instance_F: %UnityEngineGameObject, this\r\n    type_4: %SystemType, null\r\n
-    \   GameObject_4: %UnityEngineGameObject, this\r\n    Type_4: %SystemType, null\r\n
-    \   Single_0: %SystemSingle, null\r\n    Single_1: %SystemSingle, null\r\n    instance_10:
-    %UnityEngineAudioClip, null\r\n    instance_11: %UnityEngineAudioClipArray, null\r\n
-    \   Int32_6: %SystemInt32, null\r\n    Int32_7: %SystemInt32, null\r\n    Int32_8:
-    %SystemInt32, null\r\n    Boolean_4: %SystemBoolean, null\r\n    Int32_9: %SystemInt32,
-    null\r\n    Int32_A: %SystemInt32, null\r\n    instance_12: %VRCUdonUdonBehaviour,
-    this\r\n    eventName_4: %SystemString, null\r\n    instance_13: %UnityEngineGameObject,
-    this\r\n    type_5: %SystemType, null\r\n    GameObject_5: %UnityEngineGameObject,
-    this\r\n    Type_5: %SystemType, null\r\n    Playlist: %UnityEngineAudioClipArray,
+  udonAssembly: ".data_start\r\n\r\n    .export Playlist\r\n    .export Randomize\r\n   
+    \r\n    __instance_0: %UnityEngineGameObject, this\r\n    __type_0: %SystemType,
+    null\r\n    __GameObject_0: %UnityEngineGameObject, this\r\n    __Type_0: %SystemType,
+    null\r\n    __Boolean_0: %SystemBoolean, null\r\n    __instance_1: %VRCUdonUdonBehaviour,
+    this\r\n    __eventName_0: %SystemString, null\r\n    __instance_2: %UnityEngineGameObject,
+    this\r\n    __type_1: %SystemType, null\r\n    __GameObject_1: %UnityEngineGameObject,
+    this\r\n    __Type_1: %SystemType, null\r\n    __instance_3: %UnityEngineAudioSource,
+    null\r\n    __instance_4: %UnityEngineAudioClip, null\r\n    __instance_5: %UnityEngineAudioClipArray,
+    null\r\n    __Int32_0: %SystemInt32, null\r\n    __Boolean_1: %SystemBoolean,
+    null\r\n    __instance_6: %VRCUdonUdonBehaviour, this\r\n    __eventName_1: %SystemString,
+    null\r\n    __instance_7: %UnityEngineGameObject, this\r\n    __type_2: %SystemType,
+    null\r\n    __GameObject_2: %UnityEngineGameObject, this\r\n    __Type_2: %SystemType,
+    null\r\n    __instance_8: %VRCUdonUdonBehaviour, this\r\n    __eventName_2: %SystemString,
+    null\r\n    __delaySeconds_0: %SystemSingle, null\r\n    __eventTiming_0: %VRCUdonCommonEnumsEventTiming,
+    null\r\n    __instance_9: %UnityEngineGameObject, this\r\n    __type_3: %SystemType,
+    null\r\n    __GameObject_3: %UnityEngineGameObject, this\r\n    __Type_3: %SystemType,
+    null\r\n    __Int32_1: %SystemInt32, null\r\n    __Int32_2: %SystemInt32, null\r\n   
+    __Int32_3: %SystemInt32, null\r\n    __Int32_4: %SystemInt32, null\r\n    __instance_A:
+    %UnityEngineAudioClipArray, null\r\n    __Boolean_2: %SystemBoolean, null\r\n   
+    __Boolean_3: %SystemBoolean, null\r\n    __instance_B: %UnityEngineAudioClip,
+    null\r\n    __instance_D: %UnityEngineAudioSource, null\r\n    __clip_0: %UnityEngineAudioClip,
+    null\r\n    __instance_C: %UnityEngineAudioClipArray, null\r\n    __Int32_5:
+    %SystemInt32, null\r\n    __instance_E: %VRCUdonUdonBehaviour, this\r\n    __eventName_3:
+    %SystemString, null\r\n    __delaySeconds_1: %SystemSingle, null\r\n    __eventTiming_1:
+    %VRCUdonCommonEnumsEventTiming, null\r\n    __instance_F: %UnityEngineGameObject,
+    this\r\n    __type_4: %SystemType, null\r\n    __GameObject_4: %UnityEngineGameObject,
+    this\r\n    __Type_4: %SystemType, null\r\n    __Single_0: %SystemSingle, null\r\n   
+    __Single_1: %SystemSingle, null\r\n    __instance_10: %UnityEngineAudioClip,
+    null\r\n    __instance_11: %UnityEngineAudioClipArray, null\r\n    __Int32_6:
+    %SystemInt32, null\r\n    __Int32_7: %SystemInt32, null\r\n    __Int32_8: %SystemInt32,
+    null\r\n    __Boolean_4: %SystemBoolean, null\r\n    __Int32_9: %SystemInt32,
+    null\r\n    __Int32_A: %SystemInt32, null\r\n    __instance_12: %VRCUdonUdonBehaviour,
+    this\r\n    __eventName_4: %SystemString, null\r\n    __instance_13: %UnityEngineGameObject,
+    this\r\n    __type_5: %SystemType, null\r\n    __GameObject_5: %UnityEngineGameObject,
+    this\r\n    __Type_5: %SystemType, null\r\n    Playlist: %UnityEngineAudioClipArray,
     null\r\n    Randomize: %SystemBoolean, null\r\n    Player: %UnityEngineAudioSource,
-    null\r\n    CurrentId: %SystemInt32, null\r\n    NewId: %SystemInt32, null\r\n
-    \   ErrorCount: %SystemInt32, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n
-    \   .export _start\r\n    \r\n    _start:\r\n    \r\n        PUSH, GameObject_0\r\n
-    \       PUSH, instance_0\r\n        COPY\r\n        PUSH, Type_0\r\n        PUSH,
-    type_0\r\n        COPY\r\n        PUSH, instance_0\r\n        PUSH, type_0\r\n
-    \       PUSH, Player\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, Randomize\r\n        JUMP_IF_FALSE, 0x000000C0\r\n        PUSH,
-    GameObject_1\r\n        PUSH, instance_2\r\n        COPY\r\n        PUSH, Type_1\r\n
-    \       PUSH, type_1\r\n        COPY\r\n        PUSH, instance_2\r\n        PUSH,
-    type_1\r\n        PUSH, instance_1\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_1\r\n        PUSH, eventName_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n
-    \       JUMP, 0x000000C0\r\n        JUMP, 0xFFFFFFFC\r\n    \r\n    .export StopPlaying\r\n
-    \   \r\n    StopPlaying:\r\n    \r\n        PUSH, Player\r\n        PUSH, instance_3\r\n
-    \       COPY\r\n        PUSH, instance_3\r\n        EXTERN, \"UnityEngineAudioSource.__Stop__SystemVoid\"\r\n
-    \       PUSH, Playlist\r\n        PUSH, instance_5\r\n        COPY\r\n        PUSH,
-    instance_5\r\n        PUSH, CurrentId\r\n        PUSH, instance_4\r\n        EXTERN,
-    \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n        PUSH,
-    instance_4\r\n        PUSH, Boolean_1\r\n        EXTERN, \"UnityEngineAudioClip.__UnloadAudioData__SystemBoolean\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export BeforePlay\r\n    \r\n    BeforePlay:\r\n
-    \   \r\n        PUSH, GameObject_2\r\n        PUSH, instance_7\r\n        COPY\r\n
-    \       PUSH, Type_2\r\n        PUSH, type_2\r\n        COPY\r\n        PUSH,
-    instance_7\r\n        PUSH, type_2\r\n        PUSH, instance_6\r\n        EXTERN,
-    \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_6\r\n        PUSH, eventName_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n
-    \       PUSH, GameObject_3\r\n        PUSH, instance_9\r\n        COPY\r\n        PUSH,
-    Type_3\r\n        PUSH, type_3\r\n        COPY\r\n        PUSH, instance_9\r\n
-    \       PUSH, type_3\r\n        PUSH, instance_8\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_8\r\n        PUSH, eventName_2\r\n        PUSH, delaySeconds_0\r\n
-    \       PUSH, eventTiming_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEventDelayedSeconds__SystemString_SystemSingle_VRCUdonCommonEnumsEventTiming__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export PlayNext\r\n    \r\n    PlayNext:\r\n
-    \   \r\n        PUSH, CurrentId\r\n        PUSH, Int32_4\r\n        PUSH, Int32_1\r\n
-    \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, Playlist\r\n        PUSH, instance_A\r\n        COPY\r\n        PUSH,
-    instance_A\r\n        PUSH, Int32_2\r\n        EXTERN, \"UnityEngineAudioClipArray.__get_Length__SystemInt32\"\r\n
-    \       PUSH, Int32_1\r\n        PUSH, Int32_2\r\n        PUSH, CurrentId\r\n
-    \       EXTERN, \"SystemInt32.__op_Remainder__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, CurrentId\r\n        PUSH, CurrentId\r\n        COPY\r\n        PUSH,
-    Playlist\r\n        PUSH, instance_C\r\n        COPY\r\n        PUSH, instance_C\r\n
-    \       PUSH, CurrentId\r\n        PUSH, instance_B\r\n        EXTERN, \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n
-    \       PUSH, instance_B\r\n        PUSH, Boolean_2\r\n        EXTERN, \"UnityEngineAudioClip.__LoadAudioData__SystemBoolean\"\r\n
-    \       PUSH, Playlist\r\n        PUSH, instance_C\r\n        COPY\r\n        PUSH,
-    Boolean_2\r\n        PUSH, Boolean_3\r\n        COPY\r\n        PUSH, Boolean_2\r\n
-    \       JUMP_IF_FALSE, 0x00000454\r\n        PUSH, Player\r\n        PUSH, instance_D\r\n
-    \       COPY\r\n        PUSH, Playlist\r\n        PUSH, instance_C\r\n        COPY\r\n
-    \       PUSH, instance_B\r\n        PUSH, clip_0\r\n        COPY\r\n        PUSH,
-    instance_D\r\n        PUSH, instance_B\r\n        EXTERN, \"UnityEngineAudioSource.__PlayOneShot__UnityEngineAudioClip__SystemVoid\"\r\n
-    \       PUSH, GameObject_4\r\n        PUSH, instance_F\r\n        COPY\r\n        PUSH,
-    Type_4\r\n        PUSH, type_4\r\n        COPY\r\n        PUSH, instance_F\r\n
-    \       PUSH, type_4\r\n        PUSH, instance_E\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, Playlist\r\n        PUSH, instance_11\r\n        COPY\r\n        PUSH,
-    instance_11\r\n        PUSH, CurrentId\r\n        PUSH, instance_10\r\n        EXTERN,
-    \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n        PUSH,
-    instance_10\r\n        PUSH, Single_0\r\n        EXTERN, \"UnityEngineAudioClip.__get_length__SystemSingle\"\r\n
-    \       PUSH, Single_0\r\n        PUSH, Single_1\r\n        PUSH, delaySeconds_1\r\n
-    \       EXTERN, \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n
-    \       PUSH, instance_E\r\n        PUSH, eventName_3\r\n        PUSH, delaySeconds_1\r\n
-    \       PUSH, eventTiming_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEventDelayedSeconds__SystemString_SystemSingle_VRCUdonCommonEnumsEventTiming__SystemVoid\"\r\n
-    \       JUMP, 0x00000520\r\n        PUSH, ErrorCount\r\n        PUSH, Int32_8\r\n
-    \       PUSH, ErrorCount\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, ErrorCount\r\n        PUSH, ErrorCount\r\n        COPY\r\n        PUSH,
-    ErrorCount\r\n        PUSH, Int32_A\r\n        PUSH, Boolean_4\r\n        EXTERN,
-    \"SystemInt32.__op_GreaterThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n        PUSH,
-    Boolean_4\r\n        JUMP_IF_FALSE, 0x000004C0\r\n        JUMP, 0x00000520\r\n
-    \       PUSH, GameObject_5\r\n        PUSH, instance_13\r\n        COPY\r\n        PUSH,
-    Type_5\r\n        PUSH, type_5\r\n        COPY\r\n        PUSH, instance_13\r\n
-    \       PUSH, type_5\r\n        PUSH, instance_12\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_12\r\n        PUSH, eventName_4\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+    null\r\n    CurrentId: %SystemInt32, null\r\n    NewId: %SystemInt32, null\r\n   
+    ErrorCount: %SystemInt32, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n   
+    .export _start\r\n    \r\n    _start:\r\n    \r\n        PUSH, __GameObject_0\r\n       
+    PUSH, __instance_0\r\n        COPY\r\n        PUSH, __Type_0\r\n        PUSH,
+    __type_0\r\n        COPY\r\n        PUSH, __instance_0\r\n        PUSH, __type_0\r\n       
+    PUSH, Player\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, Randomize\r\n        JUMP_IF_FALSE, 0x000000C0\r\n        PUSH, __GameObject_1\r\n       
+    PUSH, __instance_2\r\n        COPY\r\n        PUSH, __Type_1\r\n        PUSH,
+    __type_1\r\n        COPY\r\n        PUSH, __instance_2\r\n        PUSH, __type_1\r\n       
+    PUSH, __instance_1\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, __instance_1\r\n        PUSH, __eventName_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    JUMP, 0x000000C0\r\n        JUMP, 0xFFFFFFFC\r\n    \r\n    .export StopPlaying\r\n   
+    \r\n    StopPlaying:\r\n    \r\n        PUSH, Player\r\n        PUSH, __instance_3\r\n       
+    COPY\r\n        PUSH, __instance_3\r\n        EXTERN, \"UnityEngineAudioSource.__Stop__SystemVoid\"\r\n       
+    PUSH, Playlist\r\n        PUSH, __instance_5\r\n        COPY\r\n        PUSH,
+    __instance_5\r\n        PUSH, CurrentId\r\n        PUSH, __instance_4\r\n       
+    EXTERN, \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n       
+    PUSH, __instance_4\r\n        PUSH, __Boolean_1\r\n        EXTERN, \"UnityEngineAudioClip.__UnloadAudioData__SystemBoolean\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n    .export BeforePlay\r\n    \r\n    BeforePlay:\r\n   
+    \r\n        PUSH, __GameObject_2\r\n        PUSH, __instance_7\r\n        COPY\r\n       
+    PUSH, __Type_2\r\n        PUSH, __type_2\r\n        COPY\r\n        PUSH, __instance_7\r\n       
+    PUSH, __type_2\r\n        PUSH, __instance_6\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, __instance_6\r\n        PUSH, __eventName_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    PUSH, __GameObject_3\r\n        PUSH, __instance_9\r\n        COPY\r\n       
+    PUSH, __Type_3\r\n        PUSH, __type_3\r\n        COPY\r\n        PUSH, __instance_9\r\n       
+    PUSH, __type_3\r\n        PUSH, __instance_8\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, __instance_8\r\n        PUSH, __eventName_2\r\n        PUSH, __delaySeconds_0\r\n       
+    PUSH, __eventTiming_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEventDelayedSeconds__SystemString_SystemSingle_VRCUdonCommonEnumsEventTiming__SystemVoid\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n    .export PlayNext\r\n    \r\n    PlayNext:\r\n   
+    \r\n        PUSH, CurrentId\r\n        PUSH, __Int32_4\r\n        PUSH, __Int32_1\r\n       
+    EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n       
+    PUSH, Playlist\r\n        PUSH, __instance_A\r\n        COPY\r\n        PUSH,
+    __instance_A\r\n        PUSH, __Int32_2\r\n        EXTERN, \"UnityEngineAudioClipArray.__get_Length__SystemInt32\"\r\n       
+    PUSH, __Int32_1\r\n        PUSH, __Int32_2\r\n        PUSH, CurrentId\r\n       
+    EXTERN, \"SystemInt32.__op_Remainder__SystemInt32_SystemInt32__SystemInt32\"\r\n       
+    PUSH, Playlist\r\n        PUSH, __instance_C\r\n        COPY\r\n        PUSH,
+    __instance_C\r\n        PUSH, CurrentId\r\n        PUSH, __instance_B\r\n       
+    EXTERN, \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n       
+    PUSH, __instance_B\r\n        PUSH, __Boolean_2\r\n        EXTERN, \"UnityEngineAudioClip.__LoadAudioData__SystemBoolean\"\r\n       
+    PUSH, Playlist\r\n        PUSH, __instance_C\r\n        COPY\r\n        PUSH,
+    __Boolean_2\r\n        PUSH, __Boolean_3\r\n        COPY\r\n        PUSH, __Boolean_2\r\n       
+    JUMP_IF_FALSE, 0x00000440\r\n        PUSH, Player\r\n        PUSH, __instance_D\r\n       
+    COPY\r\n        PUSH, Playlist\r\n        PUSH, __instance_C\r\n        COPY\r\n       
+    PUSH, __instance_B\r\n        PUSH, __clip_0\r\n        COPY\r\n        PUSH,
+    __instance_D\r\n        PUSH, __instance_B\r\n        EXTERN, \"UnityEngineAudioSource.__PlayOneShot__UnityEngineAudioClip__SystemVoid\"\r\n       
+    PUSH, __GameObject_4\r\n        PUSH, __instance_F\r\n        COPY\r\n       
+    PUSH, __Type_4\r\n        PUSH, __type_4\r\n        COPY\r\n        PUSH, __instance_F\r\n       
+    PUSH, __type_4\r\n        PUSH, __instance_E\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, Playlist\r\n        PUSH, __instance_11\r\n        COPY\r\n        PUSH,
+    __instance_11\r\n        PUSH, CurrentId\r\n        PUSH, __instance_10\r\n       
+    EXTERN, \"UnityEngineAudioClipArray.__Get__SystemInt32__UnityEngineAudioClip\"\r\n       
+    PUSH, __instance_10\r\n        PUSH, __Single_0\r\n        EXTERN, \"UnityEngineAudioClip.__get_length__SystemSingle\"\r\n       
+    PUSH, __Single_0\r\n        PUSH, __Single_1\r\n        PUSH, __delaySeconds_1\r\n       
+    EXTERN, \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n       
+    PUSH, __instance_E\r\n        PUSH, __eventName_3\r\n        PUSH, __delaySeconds_1\r\n       
+    PUSH, __eventTiming_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEventDelayedSeconds__SystemString_SystemSingle_VRCUdonCommonEnumsEventTiming__SystemVoid\"\r\n       
+    JUMP, 0x000004F8\r\n        PUSH, ErrorCount\r\n        PUSH, __Int32_8\r\n       
+    PUSH, ErrorCount\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n       
+    PUSH, ErrorCount\r\n        PUSH, __Int32_A\r\n        PUSH, __Boolean_4\r\n       
+    EXTERN, \"SystemInt32.__op_GreaterThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n       
+    PUSH, __Boolean_4\r\n        JUMP_IF_FALSE, 0x00000498\r\n        JUMP, 0x000004F8\r\n       
+    PUSH, __GameObject_5\r\n        PUSH, __instance_13\r\n        COPY\r\n       
+    PUSH, __Type_5\r\n        PUSH, __type_5\r\n        COPY\r\n        PUSH, __instance_13\r\n       
+    PUSH, __type_5\r\n        PUSH, __instance_12\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n       
+    PUSH, __instance_12\r\n        PUSH, __eventName_4\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
   assemblyError: 
   graphData:
     name: 
@@ -138,9 +137,11 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Playlist
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Variable_SystemBoolean
@@ -155,13 +156,16 @@ MonoBehaviour:
       flowUIDs: []
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Randomize
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Event_Start
@@ -214,9 +218,11 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Player
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Set_Variable
@@ -253,7 +259,8 @@ MonoBehaviour:
       - 
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Variable_SystemInt32
       uid: 4154009a-b540-45f5-9682-748bd995a95e
       position: {x: -16444.965, y: -3055.8442}
@@ -270,9 +277,11 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|CurrentId
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Get_Variable
@@ -296,7 +305,8 @@ MonoBehaviour:
       - fea9857f-39d2-4ac2-ae7d-3ba8cc3e6f9a
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Variable_SystemInt32
       uid: 91ef2ff3-bf5a-4574-b123-af81bf1aee93
       position: {x: -8388.485, y: 1752.3352}
@@ -313,9 +323,11 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|NewId
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Set_Variable
@@ -459,7 +471,8 @@ MonoBehaviour:
       - c2ea622a-9d24-4e60-8bc0-b5e2e21a4213
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 28843297-0419-47d9-bcb2-ea233d6b86f9
       position: {x: -50, y: 1000}
@@ -910,7 +923,8 @@ MonoBehaviour:
       flowUIDs: []
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: SystemString.__Format__SystemString_SystemObject_SystemObject_SystemObject__SystemString
       uid: a37b94e7-27b6-4c7b-8675-04eb03a0bb74
       position: {x: -1100, y: -1750}
@@ -959,7 +973,8 @@ MonoBehaviour:
       flowUIDs: []
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Event_Custom
       uid: 19e316ad-c454-49d1-86c3-cfc3f34fafc9
       position: {x: -100, y: 1500}
@@ -1054,9 +1069,11 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ErrorCount
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
     - fullName: Set_Variable
@@ -1128,7 +1145,8 @@ MonoBehaviour:
       - 05a88cb9-e555-49f4-9458-3d493d426c94
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     updateOrder: 0
   graphElementData:
   - type: 2
