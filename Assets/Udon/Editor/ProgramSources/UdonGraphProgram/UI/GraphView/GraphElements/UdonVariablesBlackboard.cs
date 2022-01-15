@@ -70,6 +70,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 contentContainer.Add(row);
                 _idToRow.Add(nodeData.uid, row);
             }
+            this.Reload();
         }
 
         public void RemoveByID(string id)

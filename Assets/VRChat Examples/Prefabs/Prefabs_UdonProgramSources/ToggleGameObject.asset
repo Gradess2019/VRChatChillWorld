@@ -41,7 +41,7 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: 
       - unityObjectValue: {fileID: 0}
-        stringValue: 
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
     - fullName: Event_Custom
       uid: b5959045-ee36-4e8c-93cf-935730cbb37e
       position: {x: 250, y: -360}
@@ -84,7 +84,7 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|15ad195f-b5a0-48f1-83f8-6030d5087dd5
     - fullName: UnityEngineGameObject.__get_activeSelf__SystemBoolean
       uid: ec6184ef-19e2-4687-81b5-3383900abca1
-      position: {x: -100, y: -110}
+      position: {x: 30, y: -70}
       nodeUIDs:
       - 6e056de9-2b94-4e2d-8320-e7b012b1a18d|0
       flowUIDs: []
@@ -99,21 +99,21 @@ MonoBehaviour:
       flowUIDs: []
       nodeValues:
       - unityObjectValue: {fileID: 0}
-        stringValue: 
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
     updateOrder: 0
   graphElementData:
   - type: 2
     uid: 35cb12b1-bd2f-4eba-a693-6e26a0fa05bd
-    jsonData: '{"uid":"35cb12b1-bd2f-4eba-a693-6e26a0fa05bd","layout":{"serializedVersion":"2","x":-119.0,"y":-180.0,"width":578.0,"height":208.0},"containedElements":["2cd078cf-34ff-4a06-98ab-17fad6df8199","ec6184ef-19e2-4687-81b5-3383900abca1"],"title":"Unary
+    jsonData: '{"uid":"35cb12b1-bd2f-4eba-a693-6e26a0fa05bd","layout":{"serializedVersion":"2","x":0.0,"y":-130.0,"width":558.0,"height":172.0},"containedElements":["2cd078cf-34ff-4a06-98ab-17fad6df8199","ec6184ef-19e2-4687-81b5-3383900abca1"],"title":"Unary
       Negation just flips the value to its opposite","layer":0,"elementTypeColor":{"r":0.0,"g":0.0,"b":0.0,"a":0.0}}'
   - type: 5
-    uid: 5d0f4cc4-6854-454f-bb77-8e1bb8842672
-    jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":10.0,"y":130.0,"width":200.0,"height":150.0}}'
+    uid: adb4168a-c2cf-41fc-a7d0-b0f765fa55d8
+    jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":10.0,"y":130.0,"width":237.0,"height":149.0}}'
   - type: 4
     uid: 660ed7e9-fdef-48a0-be18-1e45b935b733
     jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":10.0,"y":20.0,"width":0.0,"height":0.0}}'
   viewTransform:
-    position: {x: 430.54822, y: 749.8235}
+    position: {x: 417.54822, y: 729.8235}
     scale: 1
   version: 1.0.0
   showAssembly: 0

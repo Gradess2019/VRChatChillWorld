@@ -17,7 +17,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         override public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
-            if (_fullRegistry != null) return _fullRegistry;
+            if (!skipCache && _fullRegistry != null) return _fullRegistry;
 
             _fullRegistry = new List<SearchTreeEntry>();
 

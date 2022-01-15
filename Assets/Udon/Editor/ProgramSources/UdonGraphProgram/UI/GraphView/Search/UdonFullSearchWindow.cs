@@ -20,7 +20,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
 
         override public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
-            if (_slowRegistryCache != null && _slowRegistryCache.Count > 0) return _slowRegistryCache;
+            if (!skipCache && (_slowRegistryCache != null && _slowRegistryCache.Count > 0)) return _slowRegistryCache;
 
             _slowRegistryCache = new List<SearchTreeEntry>
             {

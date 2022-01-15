@@ -38,13 +38,14 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         public static Port Create(string portName, Direction portDirection, IEdgeConnectorListener connectorListener,
             Type type, UdonNodeData data, int index, Orientation orientation = Orientation.Horizontal)
         {
+
             Capacity capacity = Capacity.Single;
             if (portDirection == Direction.Input && type == null || portDirection == Direction.Output && type != null)
             {
                 capacity = Capacity.Multi;
             }
 
-            var port = new UdonPort(orientation, portDirection, capacity, type)
+            UdonPort port = new UdonPort(orientation, portDirection, capacity, type)
             {
                 m_EdgeConnector = new EdgeConnector<Edge>(connectorListener),
             };
@@ -62,11 +63,23 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             return _nodeValueIndex;
         }
 
+        private bool _isSendChangePort = false;
+        
         private void SetupPort()
         {
-            this.AddManipulator(m_EdgeConnector);
+            _isSendChangePort = portName == "sendChange";
+            if (_isSendChangePort)
+            {
+                m_EdgeConnector = null;
+            }
+            else
+            {
+                this.AddManipulator(m_EdgeConnector);   
+            }
 
             tooltip = UdonGraphExtensions.FriendlyTypeName(portType);
+
+            FullName = _udonNodeData.fullName;
 
             if (portType == null || direction == Direction.Output)
             {
@@ -87,10 +100,18 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 }
             }
 
-            if (_udonNodeData.fullName.StartsWith("Const"))
+            if (_udonNodeData.fullName.StartsWithCached("Const"))
             {
-                RemoveConnector();
+                RemoveConnectorAndLabel();
             }
+            else if (_udonNodeData.fullName.StartsWithCached("Set_Variable") && _nodeValueIndex == 2)
+            {
+                _isSendChangePort = true;
+                RemoveConnector();
+                AddToClassList("send-change");
+            }
+            
+            AddToClassList(portName);
 
             UpdateLabel(connected);
         }
@@ -152,7 +173,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                         tfield.value = newValue;
                         SetNewValue(newValue);
                     });
-                RemoveConnector();
+                RemoveConnectorAndLabel();
             }
 
             // Add label, shown when input is connected. Not shown by default
@@ -165,10 +186,15 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
             Add(_inputField);
         }
 
+        private void RemoveConnectorAndLabel()
+        {
+            RemoveConnector();
+            this.Q(null, "connectorText")?.RemoveFromHierarchy();
+        }
+        
         private void RemoveConnector()
         {
             this.Q("connector")?.RemoveFromHierarchy();
-            this.Q(null, "connectorText")?.RemoveFromHierarchy();
         }
 
 #pragma warning disable 0649 // variable never assigned
@@ -207,6 +233,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         // Update elements on connect
         public override void Connect(Edge edge)
         {
+            AddToClassList("connected");
             base.Connect(edge);
             
             Undo.RecordObject(((UdonNode)node).Graph.graphProgramAsset, "Connect Edge");
@@ -236,19 +263,29 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
                 string myNodeUid = ((UdonNode) node).uid;
                 input.SetDataFromNewConnection($"{myNodeUid}|{_nodeValueIndex}", input.GetIndex());
             }
+
+            if (_isSendChangePort)
+            {
+                DisconnectAll();
+                this.Reload();
+            }
         }
 
         public override void OnStopEdgeDragging()
         {
             base.OnStopEdgeDragging();
 
-            if (edgeConnector.edgeDragHelper.draggedPort == this)
+            if (edgeConnector?.edgeDragHelper?.draggedPort == this)
             {
                 if (capacity == Capacity.Single && connections.Count() > 0)
                 {
                     // This port could only have one connection. Fixed in Reserialize, need to reload to show the change
                     this.Reload();
                 }
+            }
+            else
+            {
+                this.Reload();
             }
         }
 
@@ -304,6 +341,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         // Update elements on disconnect
         public override void Disconnect(Edge edge)
         {
+            RemoveFromClassList("connected");
             if (node == null) return;
             Undo.RecordObject(((UdonNode)node).Graph.graphProgramAsset, "Connect Edge");
             base.Disconnect(edge);

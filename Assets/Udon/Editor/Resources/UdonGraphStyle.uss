@@ -254,6 +254,7 @@ UdonGraph {
 
 Edge.edge {
 	--edge-width:3;
+	--layer:0;
 }
 
 UdonPort.flow > #connector {
@@ -267,6 +268,10 @@ UdonPort.flow > #connector {
 
 UdonPort.port {
 	--port-color:rgb(150,150,150);
+}
+
+UdonPort.port > #connector {
+	flex-shrink: 0;
 }
 
 UdonPort.flow > #connector > #cap {
@@ -303,6 +308,26 @@ UdonPort EnumField {
 	padding-right:20px;
 }
 
+UdonPort.connected > #VariablePopup {
+	visibility: hidden;
+	width: 0;
+}
+
+GetOrSetProgramVariableNode UdonPort.symbolName TextField {
+	visibility: hidden;
+	width: 0;
+}
+
+UdonPort.connected > #EventNamePopup {
+	visibility: hidden;
+	width: 0;
+}
+
+SendCustomEventNode UdonPort.eventName TextField {
+	visibility: hidden;
+	width: 0;
+}
+
 #resize-container {
 	flex-direction:row;
 }
@@ -323,11 +348,15 @@ UdonPort EnumField {
 	min-width:65px;
 }
 
-UdonNode #title-container {
+.UdonNode {
+	--layer:1;
+}
+
+.UdonNode #title-container {
 	flex:1;
 }
 
-UdonNode Label#title-label {
+.UdonNode Label#title-label {
 	flex:1;
 	margin-left:5px;
 	margin-right:6px;
@@ -338,7 +367,7 @@ UdonNode Label#title-label {
 	font-size:16px;
 }
 
-UdonNode #subtitle {
+.UdonNode #subtitle {
 	margin-left:5px;
 	margin-right:6px;
 	margin-top:2px;
@@ -347,16 +376,20 @@ UdonNode #subtitle {
 	font-size:10px;
 }
 
-UdonNode #title {
+.UdonNode #title {
 	height:40px;
 	background-color:rgb(10,10,10);
 }
 
-UdonNode #input .popupField {
-	padding-right:20px;
+.UdonNode #contents > #top > #input {
+	flex: 1 1 auto;
 }
 
-UdonNode #divider.horizontal {
+.UdonNode EnumField {
+	flex-shrink: 1;
+}
+
+.UdonNode #divider.horizontal {
 	border-bottom-width:3px;
 	border-color:rgb(77,157,255);
 }
@@ -389,12 +422,17 @@ BlackboardRow .unity-base-field {
 	width: 128px;
 }
 
-UdonNode #collapse-button {
+.UdonNode #collapse-button {
 	width:20px;
 	padding-left:0;
 }
 
-UdonNode #help-button {
+.UdonNode FloatField, .UdonNode IntegerField {
+	width:50px;
+	margin-right:5px;
+}
+
+.UdonNode #help-button {
 	background-image: none;
 	background-color: rgb(10,10,10);
 	width:20px;
@@ -403,7 +441,7 @@ UdonNode #help-button {
 	border-width:0;
 }
 
-UdonNode #help-button > #icon {
+.UdonNode #help-button > #icon {
 	width:12px;
 	height:12px;
 	align-self:center;
@@ -414,12 +452,25 @@ UdonNode #help-button > #icon {
 	color:rgb(255,255,255);
 }
 
-UdonNode:hover #help-button > #icon {
+.UdonNode:hover #help-button > #icon {
 	visibility:visible;
 }
 
-UdonNode #help-button:hover > #icon {
+.UdonNode #help-button:hover > #icon {
 	opacity:1;
+}
+
+.UdonNode #contents > #top > #input {
+	flex: 1 1 auto;
+}
+
+.UdonNode PopupField {
+	flex-shrink: 1;
+}
+
+.scope .group{
+	opacity: 0.5;
+	--layer: 0;
 }
 
 #comment {
@@ -442,6 +493,7 @@ UdonNode #help-button:hover > #icon {
 
 #comment .mainContainer {
 	justify-content:center;
+	overflow: hidden;
 }
 
 #comment TextField {
@@ -456,8 +508,8 @@ UdonNode #help-button:hover > #icon {
 }
 
 #comment .resizer-icon {
-	position-right:1;
-	position-bottom:1;
+	right:1px;
+	bottom:1px;
 	background-image:none;
 	border-color:rgb(170,170,170);
 	border-bottom-width:1px;
@@ -491,6 +543,10 @@ UdonParameterProperty PopupField {
 	min-height:25px;
 }
 
+#syncToggle PopupField Label {
+	align-self: center;
+}
+
 #Parameters #contentContainer {
 	padding-bottom: 12px;
 	padding-top: 2px;
@@ -512,8 +568,8 @@ UdonParameterProperty PopupField {
 }
 
 #Parameters .resizer-icon {
-	position-right:1;
-	position-bottom:1;
+	right:1px;
+	bottom:1px;
 	background-image:none;
 	border-color:rgb(170,170,170);
 	border-bottom-width:1px;
@@ -615,4 +671,8 @@ UdonProgramSourceView #AssemblyField {
 
 .UdonValueField:focus {
 	background-image: resource("TextBoxBGFocused");
+}
+
+UdonPort > .unity-base-field {
+	flex-direction: column;
 }

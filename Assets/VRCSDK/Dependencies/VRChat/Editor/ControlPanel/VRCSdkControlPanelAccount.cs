@@ -86,7 +86,7 @@ public partial class VRCSdkControlPanel : EditorWindow
             return;
 
         if (!APIUser.IsLoggedIn && ApiCredentials.Load())
-            APIUser.FetchCurrentUser((c) => AnalyticsSDK.LoggedInUserChanged(c.Model as APIUser), null);
+            APIUser.InitialFetchCurrentUser((c) => AnalyticsSDK.LoggedInUserChanged(c.Model as APIUser), null);
 
         clientInstallPath = SDKClientUtilities.GetSavedVRCInstallPath();
         if (string.IsNullOrEmpty(clientInstallPath))
@@ -165,7 +165,7 @@ public partial class VRCSdkControlPanel : EditorWindow
             if (serverEnvironment != newEnv)
                 serverEnvironment = newEnv;
 
-            username = EditorGUILayout.TextField("Username", username);
+            username = EditorGUILayout.TextField("Username/Email", username);
             password = EditorGUILayout.PasswordField("Password", password);
 
             if (GUILayout.Button("Sign In"))

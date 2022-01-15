@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.CSharp;
 using UnityEngine;
+using VRC.Udon.Compiler.Compilers;
 using VRC.Udon.Graph;
 using VRC.Udon.Graph.Interfaces;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
@@ -297,6 +298,11 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
 
         #endregion
 
+        public static string GetVariableChangeEventName(string variableName)
+        {
+            return UdonGraphCompiler.GetVariableChangeEventName(variableName);
+        }
+
         public static string FriendlyNameify(this string typeString)
         {
             if (typeString == null)
@@ -328,6 +334,8 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI
             typeString = typeString.Replace("TMPro", "");
             typeString = typeString.Replace("VideoVideo", "Video");
             typeString = typeString.Replace("VRCUdonCommon", "");
+            typeString = typeString.Replace("Shuffle[]", "ShuffleArray");
+            typeString = typeString.Replace("RenderingPostProcessing", "");
             // ReSharper disable once StringLiteralTypo
             if (typeString.Replace("ector", "").Contains("ctor")) //Handle "Vector/vector"
             {
