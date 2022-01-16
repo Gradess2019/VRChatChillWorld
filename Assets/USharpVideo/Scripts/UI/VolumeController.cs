@@ -66,7 +66,7 @@ namespace UdonSharp.Video
             if (controlHandler) controlHandler.OnMutePress(!_muted);
         }
 
-        void UpdateVolumeIcon()
+        public void UpdateVolumeIcon()
         {
             if (_muted)
             {
