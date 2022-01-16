@@ -231,6 +231,7 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - 32e267ea-7d40-444d-a634-2fa2b4d73741|0
+      - 
       flowUIDs:
       - f5a3c95f-2bb1-4df2-98d9-02c95cd47b62
       nodeValues:
@@ -238,6 +239,9 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|37ffb997-fee3-45cd-8e6b-46b87c281392
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 8ad3e46b-f448-4fba-a3ca-a252758795fd
       position: {x: 300, y: -300}
@@ -336,6 +340,7 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - af2991d0-e4e8-4f92-be1a-fb0627c338c0|0
+      - 
       flowUIDs:
       - d07bde12-56d2-4e32-bfc8-acf599488176
       nodeValues:
@@ -343,6 +348,9 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|91ef2ff3-bf5a-4574-b123-af81bf1aee93
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 66ce085b-c1a7-499b-84b6-86ff965fa799
       position: {x: -1800, y: -1450}
@@ -360,12 +368,16 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - 57646086-911c-446b-8428-2cb392a858f1|0
+      - 
       flowUIDs: []
       nodeValues:
       - unityObjectValue: {fileID: 0}
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|91ef2ff3-bf5a-4574-b123-af81bf1aee93
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 5f403cfc-628c-4672-b6c4-b2ef0f2df543
       position: {x: -1100, y: -1150}
@@ -383,6 +395,7 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - 5f403cfc-628c-4672-b6c4-b2ef0f2df543|0
+      - 
       flowUIDs:
       - 
       nodeValues:
@@ -390,6 +403,9 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|4154009a-b540-45f5-9682-748bd995a95e
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 3cae5d8f-9c2d-4948-8545-44a76a020286
       position: {x: 800, y: 1900}
@@ -1014,6 +1030,7 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - 7d6807ab-515a-4ea3-a9fe-73184071ba3c|0
+      - 
       flowUIDs:
       - 5d574c84-4ae3-4675-b0aa-d2f4ef1960f4
       nodeValues:
@@ -1021,6 +1038,9 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|4154009a-b540-45f5-9682-748bd995a95e
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: SystemInt32.__op_Remainder__SystemInt32_SystemInt32__SystemInt32
       uid: 7d6807ab-515a-4ea3-a9fe-73184071ba3c
       position: {x: -100, y: 1600}
@@ -1082,6 +1102,7 @@ MonoBehaviour:
       nodeUIDs:
       - 
       - fe5ee2c2-3175-4749-9fff-e7a8f2d77561|0
+      - 
       flowUIDs:
       - ae3c76f4-a90d-4ba8-bc78-2ce74219ab26
       nodeValues:
@@ -1089,6 +1110,9 @@ MonoBehaviour:
         stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|fd35a07d-4c55-490a-902f-031ba9ed60aa
       - unityObjectValue: {fileID: 0}
         stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
     - fullName: Get_Variable
       uid: 8b4ba5ef-10c5-41cb-8e99-34a34677bc36
       position: {x: 650, y: 2100}
@@ -1159,7 +1183,7 @@ MonoBehaviour:
     uid: 8cea3c99-1812-4223-9302-b565688a8cd5
     jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":10.0,"y":20.0,"width":0.0,"height":0.0}}'
   viewTransform:
-    position: {x: 926.40594, y: 572.84973}
-    scale: 0.32690176
+    position: {x: 498, y: 267}
+    scale: 0.2
   version: 1.0.0
   showAssembly: 0
