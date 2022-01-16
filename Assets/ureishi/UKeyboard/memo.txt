@@ -1,0 +1,44 @@
+Udonで実装したキーボード
+
+右上の「変換」キーでひらがな入力ができます
+カタカナキーを押すとカタカナ入力になります
+U+から始めるとその直後4文字をユニコード符号と判断して該当文字を入力します
+
+エンターキーを押すと Udon Keyboard に設定した Udon Sharp Behaviour の OnEndEdit メソッドをそれぞれ呼び出します
+// 呼び出される側に追加するフィールド
+[HideInInspector]
+public UKeyboard
+    keyboard;
+
+[SerializeField]
+private UdonSharpBehaviour[]
+    _udonSharpBehaviours;
+
+// 呼び出される側に追加するメソッド
+public void OnEndEdit()
+{
+    // このメソッド内を変更する
+    text = keyboard.text;
+
+    // Relay Event OnEndEdit()
+    foreach (var udonSharpBehaviour in _udonSharpBehaviours)
+    {
+        if (udonSharpBehaviour)
+        {
+            udonSharpBehaviour.SetProgramVariable(nameof(keyboard), keyboard);
+            udonSharpBehaviour.SendCustomEvent(nameof(OnEndEdit));
+        }
+        else
+        {
+            Debug.LogWarning($"[{nameof(PasswordEvent)}] Target Udon Sharp Behaviour is null.", this);
+        }
+    }
+}
+
+Ctrl + BackSpaceで入力欄をClear
+
+Do Active Input Field
+Enterキーでフォーカスを入力状態に移します
+
+同梱のFontファイル
+NotoSansJP-Regular
